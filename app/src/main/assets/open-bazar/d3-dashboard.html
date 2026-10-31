@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>मेरो बजार (Mero Bazar) — D3.js Metrics & Performance Dashboard</title>
+  <meta name="description" content="Visual D3.js dashboard displaying key metrics from Mero Bazar: user growth, transaction volume trends, provincial spread and payment splits">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --bg-dark: #0B1220;
+      --card-dark: #121E34;
+      --card-border: #1E2D4A;
+      --text-main: #F1F5F9;
+      --text-sub: #94A3B8;
+      --primary-blue: #0F4C9A;
+      --accent-saffron: #F28C0F;
+      --accent-emerald: #10B981;
+      --accent-cyan: #06B6D4;
+      --accent-purple: #8B5CF6;
+      --accent-rose: #F43F5E;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif; }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      padding: 12px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Dashboard Header */
+    .dash-header {
+      background: linear-gradient(135deg, rgba(15, 76, 154, 0.4), rgba(242, 140, 15, 0.18));
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin-bottom: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    .dash-title-group h1 {
+      font-size: 19px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #FFFFFF;
+      letter-spacing: -0.3px;
+    }
+
+    .dash-title-group p {
+      font-size: 12.5px;
+      color: var(--text-sub);
+      margin-top: 3px;
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(16, 185, 129, 0.18);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #10B981;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 12px;
+    }
+
+    .live-pulse {
+      width: 7px;
+      height: 7px;
+      background: #10B981;
+      border-radius: 50%;
+      animation: pulseLive 1.5s infinite;
+    }
+
+    @keyframes pulseLive {
+      0% { transform: scale(0.9); opacity: 0.8; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0.8; }
+    }
+
+    .dash-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-action {
+      background: var(--card-dark);
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+      border-radius: 9px;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    .btn-action:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: var(--accent-saffron);
+    }
+
+    .btn-action.highlight {
+      background: var(--accent-saffron);
+      color: #000;
+      border-color: var(--accent-saffron);
+    }
+
+    /* KPI Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    @media (min-width: 600px) {
+      .kpi-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .kpi-card {
+      background: var(--card-dark);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 14px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+    }
+
+    .kpi-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+    }
+
+    .kpi-card.c-saffron::before { background: var(--accent-saffron); }
+    .kpi-card.c-emerald::before { background: var(--accent-emerald); }
+    .kpi-card.c-cyan::before { background: var(--accent-cyan); }
+    .kpi-card.c-purple::before { background: var(--accent-purple); }
+
+    .kpi-label {
+      font-size: 11.5px;
+      color: var(--text-sub);
+      font-weight: 600;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .kpi-value {
+      font-size: 19px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.3px;
+    }
+
+    .kpi-sub {
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .kpi-sub.pos { color: var(--accent-emerald); }
+    .kpi-sub.neutral { color: var(--accent-cyan); }
+
+    /* Main Chart Card */
+    .chart-card {
+      background: var(--card-dark);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      position: relative;
+    }
+
+    .chart-controls-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .pills-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .metric-pill, .range-pill {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-sub);
+      border-radius: 8px;
+      padding: 5px 11px;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      touch-action: manipulation;
+    }
+
+    .metric-pill:hover, .range-pill:hover {
+      color: #FFF;
+      border-color: rgba(255,255,255,0.25);
+    }
+
+    .metric-pill.active {
+      background: var(--accent-saffron);
+      color: #000;
+      border-color: var(--accent-saffron);
+    }
+
+    .range-pill.active {
+      background: var(--primary-blue);
+      color: #FFF;
+      border-color: var(--primary-blue);
+    }
+
+    .chart-svg-box {
+      width: 100%;
+      min-height: 250px;
+      position: relative;
+    }
+
+    /* Floating Tooltip */
+    #d3DashboardTooltip {
+      display: none;
+      position: absolute;
+      background: rgba(18, 30, 52, 0.95);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--accent-saffron);
+      border-radius: 10px;
+      padding: 8px 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      pointer-events: none;
+      z-index: 100;
+      white-space: nowrap;
+      transition: opacity 0.15s ease;
+    }
+
+    /* Split Row */
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    @media (min-width: 768px) {
+      .split-grid { grid-template-columns: 1.2fr 1fr; }
+    }
+
+    .sub-card {
+      background: var(--card-dark);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    }
+
+    .sub-card-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .donut-center-box {
+      text-align: center;
+      margin-top: -6px;
+      margin-bottom: 10px;
+      min-height: 38px;
+    }
+
+    .legend-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .legend-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--card-border);
+      padding: 3px 8px;
+      border-radius: 8px;
+      color: var(--text-sub);
+    }
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="dash-header">
+    <div class="dash-title-group">
+      <h1>
+        <span>📈</span>
+        <span data-np="मेरो बजार — D3.js भिजुअल ड्यासबोर्ड" data-en="Mero Bazar — D3.js Visual Dashboard">
+          मेरो बजार — D3.js भिजुअल ड्यासबोर्ड
+        </span>
+        <span class="live-badge">
+          <span class="live-pulse"></span>
+          <span data-np="प्रत्यक्ष डेटा" data-en="LIVE DATA">प्रत्यक्ष डेटा</span>
+        </span>
+      </h1>
+      <p data-np="प्रयोगकर्ता वृद्धि, दैनिक कारोबार (GMV), ७ प्रदेशको वितरण र भुक्तानी ट्रेन्ड" data-en="User growth trajectories, transaction volume trends (GMV), 7 provinces spread & payment flows">
+        प्रयोगकर्ता वृद्धि, दैनिक कारोबार (GMV), ७ प्रदेशको वितरण र भुक्तानी ट्रेन्ड
+      </p>
+    </div>
+
+    <div class="dash-actions">
+      <button class="btn-action" onclick="MeroBazarD3Dashboard.exportCsv()">
+        <span>📊</span>
+        <span data-np="CSV डेटा" data-en="Export CSV">CSV डेटा</span>
+      </button>
+      <button class="btn-action highlight" onclick="MeroBazarD3Dashboard.exportPng()">
+        <span>📸</span>
+        <span data-np="चार्ट डाउनलोड" data-en="Save Chart">चार्ट डाउनलोड</span>
+      </button>
+      <button class="btn-action" id="btnLangToggle" onclick="MeroBazarD3Dashboard.toggleLanguage()">
+        <span>🌐</span>
+        <span id="langLabel">English</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Key Metrics (KPIs) Summary -->
+  <section class="kpi-grid">
+    <div class="kpi-card c-saffron">
+      <div class="kpi-label">
+        <span data-np="३० दिनको कुल कारोबार" data-en="30-Day Total GMV">३० दिनको कुल कारोबार</span>
+        <span>💰</span>
+      </div>
+      <div class="kpi-value" data-np="रू ४८.६ लाख" data-en="NPR 48.6 Lakh">रू ४८.६ लाख</div>
+      <div class="kpi-sub pos">
+        <span>▲</span>
+        <span data-np="+३२.४% मासिक वृद्धि" data-en="+32.4% MoM Growth">+३२.४% मासिक वृद्धि</span>
+      </div>
+    </div>
+
+    <div class="kpi-card c-emerald">
+      <div class="kpi-label">
+        <span data-np="कुल दर्ता प्रयोगकर्ता" data-en="Total Registered Users">कुल दर्ता प्रयोगकर्ता</span>
+        <span>👥</span>
+      </div>
+      <div class="kpi-value" data-np="१,४८,२५०+" data-en="148,250+">१,४८,२५०+</div>
+      <div class="kpi-sub pos">
+        <span>▲</span>
+        <span data-np="+२४.८% वार्षिक वृद्धि" data-en="+24.8% YoY Growth">+२४.८% वार्षिक वृद्धि</span>
+      </div>
+    </div>
+
+    <div class="kpi-card c-cyan">
+      <div class="kpi-label">
+        <span data-np="सम्पन्न अर्डर संख्या" data-en="Completed Orders">सम्पन्न अर्डर संख्या</span>
+        <span>📦</span>
+      </div>
+      <div class="kpi-value" data-np="१८,९२० अर्डर" data-en="18,920 Orders">१८,९२० अर्डर</div>
+      <div class="kpi-sub pos">
+        <span>▲</span>
+        <span data-np="९८.२% डेलिभरी सफलता" data-en="98.2% Fulfillment">९८.२% डेलिभरी सफलता</span>
+      </div>
+    </div>
+
+    <div class="kpi-card c-purple">
+      <div class="kpi-label">
+        <span data-np="औसत अर्डर रकम (AOV)" data-en="Avg Order Value (AOV)">औसत अर्डर रकम (AOV)</span>
+        <span>🏷️</span>
+      </div>
+      <div class="kpi-value" data-np="रू २,५७०" data-en="NPR 2,570">रू २,५७०</div>
+      <div class="kpi-sub neutral">
+        <span>★</span>
+        <span data-np="स्थिर किनमेल दर" data-en="Healthy Cart Value">स्थिर किनमेल दर</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Trend Chart Card -->
+  <main class="chart-card">
+    <div class="chart-controls-bar">
+      <!-- Metric Selector -->
+      <div class="pills-group">
+        <button class="metric-pill active" data-metric="gmv" onclick="MeroBazarD3Dashboard.setMetric('gmv')">
+          <span data-np="कारोबार (GMV)" data-en="Transaction Volume">कारोबार (GMV)</span>
+        </button>
+        <button class="metric-pill" data-metric="users" onclick="MeroBazarD3Dashboard.setMetric('users')">
+          <span data-np="सक्रिय प्रयोगकर्ता" data-en="Active Users">सक्रिय प्रयोगकर्ता</span>
+        </button>
+        <button class="metric-pill" data-metric="orders" onclick="MeroBazarD3Dashboard.setMetric('orders')">
+          <span data-np="अर्डर संख्या" data-en="Order Velocity">अर्डर संख्या</span>
+        </button>
+        <button class="metric-pill" data-metric="aov" onclick="MeroBazarD3Dashboard.setMetric('aov')">
+          <span data-np="औसत रकम (AOV)" data-en="Avg Order Value">औसत रकम (AOV)</span>
+        </button>
+      </div>
+
+      <!-- Timeframe Selector -->
+      <div class="pills-group">
+        <button class="range-pill" data-range="7d" onclick="MeroBazarD3Dashboard.setRange('7d')">
+          <span data-np="७ दिन" data-en="7D">७ दिन</span>
+        </button>
+        <button class="range-pill active" data-range="30d" onclick="MeroBazarD3Dashboard.setRange('30d')">
+          <span data-np="३० दिन" data-en="30D">३० दिन</span>
+        </button>
+        <button class="range-pill" data-range="90d" onclick="MeroBazarD3Dashboard.setRange('90d')">
+          <span data-np="९० दिन" data-en="90D">९० दिन</span>
+        </button>
+        <button class="range-pill" data-range="1y" onclick="MeroBazarD3Dashboard.setRange('1y')">
+          <span data-np="१ वर्ष" data-en="1Y">१ वर्ष</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- D3 Chart Canvas -->
+    <div class="chart-svg-box" id="mainTrendSvgContainer"></div>
+    <div id="d3DashboardTooltip"></div>
+  </main>
+
+  <!-- Regional & Payment Breakdown Grid -->
+  <section class="split-grid">
+    <!-- Nepal 7 Provinces Breakdown -->
+    <div class="sub-card">
+      <div class="sub-card-title">
+        <span>🗺️</span>
+        <span data-np="नेपालका ७ प्रदेशहरूमा कारोबार तथा प्रयोगकर्ता हिस्सा" data-en="Nepal 7 Provinces GMV & User Distribution">
+          नेपालका ७ प्रदेशहरूमा कारोबार तथा प्रयोगकर्ता हिस्सा
+        </span>
+      </div>
+      <div id="provinceBarSvgContainer" style="width: 100%;"></div>
+    </div>
+
+    <!-- Payment Methods Donut -->
+    <div class="sub-card">
+      <div class="sub-card-title">
+        <span>💳</span>
+        <span data-np="भुक्तानी माध्यमहरूको हिस्सा (Payment Split)" data-en="Payment Method Breakdown">
+          भुक्तानी माध्यमहरूको हिस्सा (Payment Split)
+        </span>
+      </div>
+      <div class="donut-center-box" id="donutCenterSummary">
+        <div style="font-size: 13px; font-weight: 700; color: #F1F5F9;" data-np="चार्टमा ट्याप गरी विस्तृत हेर्नुहोस्" data-en="Tap slices for payment details">
+          चार्टमा ट्याप गरी विस्तृत हेर्नुहोस्
+        </div>
+      </div>
+      <div id="paymentDonutSvgContainer" style="width: 100%; min-height: 220px;"></div>
+      <div class="legend-row">
+        <div class="legend-chip"><span class="legend-dot" style="background:#60BB46;"></span> eSewa (44%)</div>
+        <div class="legend-chip"><span class="legend-dot" style="background:#ED1C24;"></span> Fonepay QR (28%)</div>
+        <div class="legend-chip"><span class="legend-dot" style="background:#5C2D91;"></span> Khalti (18%)</div>
+        <div class="legend-chip"><span class="legend-dot" style="background:#0F4C9A;"></span> Khata/COD (10%)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="js/d3.v7.min.js"></script>
+  <script src="js/bridge.js"></script>
+  <script src="js/d3-metrics-dashboard.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.MeroBazarD3Dashboard) {
+        window.MeroBazarD3Dashboard.init({ isNepali: true, metric: 'gmv', range: '30d' });
+      }
+    });
+  </script>
+</body>
+</html>

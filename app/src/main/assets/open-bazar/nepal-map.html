@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>नेपालको प्रत्यक्ष बजार नक्सा (Nepal Real Interactive Market Map)</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+  <link rel="stylesheet" href="css/theme.css" />
+  <style>
+    :root {
+      --bg: #0B1220;
+      --card: #121E34;
+      --border: #1E2D4A;
+      --text: #F1F5F9;
+      --sub: #94A3B8;
+      --primary: #0F4C9A;
+      --saffron: #F28C0F;
+      --emerald: #10B981;
+      --red: #DC2626;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif; }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    #mapWrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+      background: #0B1220;
+    }
+
+    /* Top Floating Search & Quick Filters */
+    .map-controls-top {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      right: 12px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .map-controls-top > * {
+      pointer-events: auto;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 8px;
+      background: rgba(18, 30, 52, 0.95);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 6px 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      align-items: center;
+    }
+
+    .search-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #FFF;
+      font-size: 13.5px;
+      padding: 6px 4px;
+    }
+
+    .search-input::placeholder {
+      color: var(--sub);
+    }
+
+    .city-pills-row {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 2px;
+    }
+
+    .city-pills-row::-webkit-scrollbar { display: none; }
+
+    .city-pill {
+      background: rgba(18, 30, 52, 0.9);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+      backdrop-filter: blur(4px);
+    }
+
+    .city-pill:hover, .city-pill.active {
+      background: var(--saffron);
+      color: #000;
+      border-color: var(--saffron);
+    }
+
+    /* Floating Red Pin Badge info at bottom */
+    .map-controls-bottom {
+      position: absolute;
+      bottom: 14px;
+      left: 12px;
+      right: 12px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .map-controls-bottom > * {
+      pointer-events: auto;
+    }
+
+    .location-card {
+      background: rgba(18, 30, 52, 0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1.5.dp solid var(--red);
+      border-radius: 16px;
+      padding: 14px 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .loc-details {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .loc-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .loc-coords {
+      font-size: 11.5px;
+      color: var(--saffron);
+      font-weight: 700;
+    }
+
+    .loc-hint {
+      font-size: 11px;
+      color: var(--sub);
+    }
+
+    .btn-confirm-loc {
+      background: var(--red);
+      color: #FFF;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 12.5px;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);
+      transition: transform 0.15s ease;
+    }
+
+    .btn-confirm-loc:active {
+      transform: scale(0.96);
+    }
+
+    /* GPS Floating Button */
+    .btn-gps-fab {
+      position: absolute;
+      right: 14px;
+      bottom: 110px;
+      z-index: 1000;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 1.5px solid var(--saffron);
+      color: var(--saffron);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+      transition: all 0.2s ease;
+    }
+
+    .btn-gps-fab:active {
+      transform: scale(0.92);
+      background: var(--saffron);
+      color: #000;
+    }
+
+    /* Custom Leaflet Pin Styling */
+    .red-pin-pulse {
+      width: 22px;
+      height: 22px;
+      background: #DC2626;
+      border: 3px solid #FFFFFF;
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(220, 38, 38, 0.9);
+      animation: pulseMarker 1.6s infinite;
+    }
+
+    @keyframes pulseMarker {
+      0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+      70% { box-shadow: 0 0 0 16px rgba(220, 38, 38, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+    }
+
+    /* Shop Marker */
+    .shop-marker-icon {
+      background: #0F4C9A;
+      color: #FFF;
+      border: 2px solid #F28C0F;
+      border-radius: 12px;
+      padding: 3px 6px;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Radius Selector */
+    .radius-bar {
+      display: flex;
+      gap: 6px;
+    }
+
+    .radius-btn {
+      background: rgba(18, 30, 52, 0.9);
+      border: 1px solid var(--border);
+      color: var(--sub);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .radius-btn.active {
+      background: var(--primary);
+      color: #FFF;
+      border-color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Map Canvas -->
+  <div id="mapWrapper">
+    <div id="map"></div>
+  </div>
+
+  <!-- Top Floating Bar: Search & Cities -->
+  <div class="map-controls-top">
+    <div class="search-row">
+      <span style="font-size: 16px;">🔍</span>
+      <input type="text" id="mapSearchInput" class="search-input" placeholder="काठमाडौँ, पोखरा, चितवन, विराटनगर वा ठाउँ खोज्नुहोस्..." />
+      <div class="radius-bar">
+        <button class="radius-btn" onclick="setRadius(5, this)">५km</button>
+        <button class="radius-btn" onclick="setRadius(15, this)">१५km</button>
+        <button class="radius-btn active" onclick="setRadius(50, this)">५०km</button>
+        <button class="radius-btn" onclick="setRadius(0, this)">सबै</button>
+      </div>
+    </div>
+
+    <!-- Quick City Pills across Nepal -->
+    <div class="city-pills-row">
+      <button class="city-pill active" onclick="flyToCity('kathmandu')">📍 काठमाडौँ</button>
+      <button class="city-pill" onclick="flyToCity('pokhara')">📍 पोखरा</button>
+      <button class="city-pill" onclick="flyToCity('chitwan')">📍 चितवन</button>
+      <button class="city-pill" onclick="flyToCity('biratnagar')">📍 विराटनगर</button>
+      <button class="city-pill" onclick="flyToCity('butwal')">📍 बुटवल</button>
+      <button class="city-pill" onclick="flyToCity('dharan')">📍 धरान</button>
+      <button class="city-pill" onclick="flyToCity('nepalgunj')">📍 नेपालगन्ज</button>
+      <button class="city-pill" onclick="flyToCity('dhangadhi')">📍 धनगढी</button>
+      <button class="city-pill" onclick="flyToCity('surkhet')">📍 सुर्खेत</button>
+      <button class="city-pill" onclick="flyToCity('janakpur')">📍 जनकपुर</button>
+      <button class="city-pill" onclick="flyToCity('ilam')">📍 इलाम</button>
+    </div>
+  </div>
+
+  <!-- Floating GPS Locate Button -->
+  <button class="btn-gps-fab" title="मेरो हालको GPS लोकेसन" onclick="locateUserGps()">
+    🎯
+  </button>
+
+  <!-- Bottom Floating Selected Location Card -->
+  <div class="map-controls-bottom">
+    <div class="location-card">
+      <div class="loc-details">
+        <div class="loc-title">
+          <span>🔴</span>
+          <span id="selectedLocName">कालिमाटी फलफूल तथा तरकारी बजार, काठमाडौँ</span>
+        </div>
+        <div class="loc-coords" id="selectedCoordsText">२७.६९८३° N, ८५.३०१२° E</div>
+        <div class="loc-hint">नक्सामा जहाँ पनि ट्याप गरी रातो पिन लगाउनुहोस्</div>
+      </div>
+      <button class="btn-confirm-loc" onclick="confirmSelectedLocation()">
+        <span>✓</span> सुरक्षित गर्नुहोस्
+      </button>
+    </div>
+  </div>
+
+  <!-- Leaflet Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script>
+    // Nepal Boundaries & Cities Coordinates
+    const NEPAL_CITIES = {
+      kathmandu: { lat: 27.7172, lng: 85.3240, zoom: 13, name: 'काठमाडौँ उपत्यका', prov: 'बागमती प्रदेश' },
+      pokhara: { lat: 28.2096, lng: 83.9856, zoom: 13, name: 'पोखरा बजार', prov: 'गण्डकी प्रदेश' },
+      chitwan: { lat: 27.6833, lng: 84.4333, zoom: 13, name: 'भरतपुर / नारायणगढ', prov: 'बागमती प्रदेश' },
+      biratnagar: { lat: 26.4525, lng: 87.2718, zoom: 13, name: 'विराटनगर', prov: 'कोशी प्रदेश' },
+      butwal: { lat: 27.7000, lng: 83.4500, zoom: 13, name: 'बुटवल / भैरहवा', prov: 'लुम्बिनी प्रदेश' },
+      dharan: { lat: 26.8124, lng: 87.2834, zoom: 13, name: 'धरान बजार', prov: 'कोशी प्रदेश' },
+      nepalgunj: { lat: 28.0500, lng: 81.6167, zoom: 13, name: 'नेपालगन्ज', prov: 'लुम्बिनी प्रदेश' },
+      dhangadhi: { lat: 28.6833, lng: 80.6000, zoom: 13, name: 'धनगढी बजार', prov: 'सुदूरपश्चिम प्रदेश' },
+      surkhet: { lat: 28.6000, lng: 81.6333, zoom: 13, name: 'वीरेन्द्रनगर, सुर्खेत', prov: 'कर्णाली प्रदेश' },
+      janakpur: { lat: 26.7288, lng: 85.9244, zoom: 13, name: 'जनकपुरधाम', prov: 'मधेश प्रदेश' },
+      ilam: { lat: 26.9100, lng: 87.9250, zoom: 13, name: 'इलाम बजार (चिया बगान)', prov: 'कोशी प्रदेश' }
+    };
+
+    // Pre-indexed Major Market Hubs in Nepal
+    const NEPAL_MARKETS = [
+      { name: 'कालिमाटी फलफूल तथा तरकारी बजार', lat: 27.6983, lng: 85.3012, cat: 'कृषि तथा तरकारी', phone: '9851000001', city: 'काठमाडौँ' },
+      { name: 'असन wholesale महाबौद्ध बजार', lat: 27.7080, lng: 85.3120, cat: 'किराना तथा कपडा', phone: '9841223344', city: 'काठमाडौँ' },
+      { name: 'पृथ्वी चोक कृषि तथा सुन्तला मन्डी', lat: 28.2096, lng: 83.9856, cat: 'ताजा फलफूल', phone: '9801998877', city: 'पोखरा' },
+      { name: 'नारायणगढ थोक कृषि बजार केन्द्र', lat: 27.6833, lng: 84.4333, cat: 'केरा तथा पोल्ट्री', phone: '9855011223', city: 'चितवन' },
+      { name: 'गुद्री थोक व्यापार केन्द्र, विराटनगर', lat: 26.4525, lng: 87.2718, cat: 'अन्न तथा खाद्यान्न', phone: '9804055667', city: 'विराटनगर' },
+      { name: 'बुटवल हाटबजार तथा सप्लायर्स', lat: 27.7000, lng: 83.4500, cat: 'घरेलु तथा हार्डवेयर', phone: '9857022334', city: 'बुटवल' },
+      { name: 'धम्बोजी फलफूल तथा जडिबुटी केन्द्र', lat: 28.0500, lng: 81.6167, cat: 'जडिबुटी तथा कृषि', phone: '9848033445', city: 'नेपालगन्ज' },
+      { name: 'धनगढी मुख्य बजार मार्ट', lat: 28.6833, lng: 80.6000, cat: 'दैनिक उपभोग्य', phone: '9848411223', city: 'धनगढी' },
+      { name: 'सुर्खेत अर्गानिक स्याउ तथा अन्न संकलन', lat: 28.6000, lng: 81.6333, cat: 'जुम्ला स्याउ/अर्गानिक', phone: '9858066778', city: 'सुर्खेत' },
+      { name: 'मिथिला हस्तकला तथा मखान बजार', lat: 26.7288, lng: 85.9244, cat: 'हस्तकला तथा खाद्य', phone: '9844077889', city: 'जनकपुर' }
+    ];
+
+    let map = null;
+    let selectedRedMarker = null;
+    let radiusCircle = null;
+    let activeRadiusKm = 50;
+
+    let currentLat = 27.6983;
+    let currentLng = 85.3012;
+    let currentAddress = 'कालिमाटी फलफूल तथा तरकारी बजार, काठमाडौँ';
+
+    function initNepalMap() {
+      if (typeof L === 'undefined') {
+        console.error('Leaflet library failed to load.');
+        return;
+      }
+
+      // Initialize Leaflet Map centered on Kathmandu, Nepal
+      map = L.map('map', {
+        center: [currentLat, currentLng],
+        zoom: 12,
+        minZoom: 6,
+        maxZoom: 18,
+        zoomControl: false
+      });
+
+      // Zoom control positioned in bottom right
+      L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+      // OpenStreetMap Tile Layer
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap contributors | Mero Bazar Nepal'
+      }).addTo(map);
+
+      // Add Red Pin Marker
+      const redPinIcon = L.divIcon({
+        className: 'red-pin-wrapper',
+        html: '<div class="red-pin-pulse"></div>',
+        iconSize: [22, 22],
+        iconAnchor: [11, 11]
+      });
+
+      selectedRedMarker = L.marker([currentLat, currentLng], {
+        icon: redPinIcon,
+        draggable: true
+      }).addTo(map);
+
+      selectedRedMarker.on('dragend', function(e) {
+        const pos = e.target.getLatLng();
+        updateSelectedLocation(pos.lat, pos.lng, 'छनोट गरिएको स्थान');
+      });
+
+      // Add pre-indexed markets across Nepal
+      NEPAL_MARKETS.forEach(m => {
+        const shopIcon = L.divIcon({
+          className: 'shop-marker-wrapper',
+          html: `<div class="shop-marker-icon">🏪 ${m.name.split(' ')[0]}</div>`,
+          iconSize: [80, 24],
+          iconAnchor: [40, 12]
+        });
+
+        const shopMarker = L.marker([m.lat, m.lng], { icon: shopIcon }).addTo(map);
+        shopMarker.bindPopup(`
+          <div style="font-family:sans-serif;padding:6px;min-width:180px;">
+            <b style="font-size:13px;color:#0F4C9A;">${m.name}</b>
+            <div style="font-size:11.5px;color:#64748B;margin-top:2px;">📍 ${m.city} · ${m.cat}</div>
+            <div style="margin-top:8px;display:flex;gap:6px;">
+              <a href="tel:+977${m.phone}" style="background:#10B981;color:#fff;padding:4px 8px;border-radius:6px;text-decoration:none;font-size:11px;font-weight:700;">📞 फोन गर्नुहोस्</a>
+              <button onclick="updateSelectedLocation(${m.lat}, ${m.lng}, '${m.name}')" style="background:#DC2626;color:#fff;border:none;padding:4px 8px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;">🔴 रातो पिन राख्नुहोस्</button>
+            </div>
+          </div>
+        `);
+      });
+
+      // Update Radius Circle
+      updateRadiusCircle();
+
+      // Tap anywhere on map to drop red pin
+      map.on('click', function(e) {
+        updateSelectedLocation(e.latlng.lat, e.latlng.lng, 'नेपालको चयन गरिएको लोकेसन');
+      });
+
+      // Search input handler
+      const searchInput = document.getElementById('mapSearchInput');
+      searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          handleSearch(this.value);
+        }
+      });
+    }
+
+    function updateRadiusCircle() {
+      if (!map) return;
+      if (radiusCircle) {
+        map.removeLayer(radiusCircle);
+        radiusCircle = null;
+      }
+
+      if (activeRadiusKm > 0) {
+        radiusCircle = L.circle([currentLat, currentLng], {
+          color: '#F28C0F',
+          fillColor: '#F28C0F',
+          fillOpacity: 0.12,
+          weight: 1.8,
+          radius: activeRadiusKm * 1000
+        }).addTo(map);
+      }
+    }
+
+    function setRadius(km, btnEl) {
+      activeRadiusKm = km;
+      document.querySelectorAll('.radius-btn').forEach(b => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+      updateRadiusCircle();
+    }
+
+    function updateSelectedLocation(lat, lng, addressHint) {
+      currentLat = lat;
+      currentLng = lng;
+      currentAddress = addressHint || `अक्षांश ${lat.toFixed(4)}°, देशान्तर ${lng.toFixed(4)}°`;
+
+      if (selectedRedMarker) {
+        selectedRedMarker.setLatLng([lat, lng]);
+      }
+
+      updateRadiusCircle();
+
+      // Update bottom card UI
+      const nameEl = document.getElementById('selectedLocName');
+      const coordsEl = document.getElementById('selectedCoordsText');
+      if (nameEl) nameEl.textContent = currentAddress;
+      if (coordsEl) coordsEl.textContent = `${lat.toFixed(4)}° N, ${lng.toFixed(4)}° E`;
+
+      // Dispatch to Android Native Bridge if active
+      if (window.AndroidMapBridge && typeof window.AndroidMapBridge.onLocationPreview === 'function') {
+        window.AndroidMapBridge.onLocationPreview(lat, lng, currentAddress);
+      }
+    }
+
+    function flyToCity(cityKey) {
+      const city = NEPAL_CITIES[cityKey];
+      if (!city || !map) return;
+
+      document.querySelectorAll('.city-pill').forEach(p => p.classList.remove('active'));
+      event.target.classList.add('active');
+
+      map.flyTo([city.lat, city.lng], city.zoom, { duration: 1.2 });
+      updateSelectedLocation(city.lat, city.lng, `${city.name}, ${city.prov}`);
+    }
+
+    function locateUserGps() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function(pos) {
+            const lat = pos.coords.latitude;
+            const lng = pos.coords.longitude;
+            map.flyTo([lat, lng], 15, { duration: 1.2 });
+            updateSelectedLocation(lat, lng, 'मेरो प्रत्यक्ष GPS लोकेसन');
+          },
+          function(err) {
+            // Fallback to Kathmandu
+            alert('GPS अनुमति पाइएन। कृपया डिभाइसमा लोकेसन अन गर्नुहोस् वा नक्सामा ट्याप गरी रातो पिन लगाउनुहोस्।');
+            flyToCity('kathmandu');
+          },
+          { enableHighAccuracy: true, timeout: 8000 }
+        );
+      } else {
+        alert('यो डिभाइसमा Geolocation उपलब्ध छैन।');
+      }
+    }
+
+    function handleSearch(query) {
+      if (!query || !query.trim()) return;
+      const q = query.trim().toLowerCase();
+
+      // Check predefined cities
+      for (const [key, city] of Object.entries(NEPAL_CITIES)) {
+        if (city.name.toLowerCase().includes(q) || key.includes(q)) {
+          flyToCity(key);
+          return;
+        }
+      }
+
+      // Check markets
+      for (const m of NEPAL_MARKETS) {
+        if (m.name.toLowerCase().includes(q) || m.city.toLowerCase().includes(q)) {
+          map.flyTo([m.lat, m.lng], 15, { duration: 1.2 });
+          updateSelectedLocation(m.lat, m.lng, m.name);
+          return;
+        }
+      }
+
+      // Generic Nominatim OSM geocoding for Nepal
+      fetch(`https://nominatim.openstreetmap.org/search?format=json&countrycodes=np&q=${encodeURIComponent(query)}`)
+        .then(res => res.json())
+        .then(results => {
+          if (results && results.length > 0) {
+            const first = results[0];
+            const lat = parseFloat(first.lat);
+            const lng = parseFloat(first.lon);
+            map.flyTo([lat, lng], 14, { duration: 1.2 });
+            updateSelectedLocation(lat, lng, first.display_name.split(',')[0]);
+          } else {
+            alert('नेपालमा यो ठाउँ भेटिएन। कृपया नजिकको सहर वा जिल्ला खोज्नुहोस्।');
+          }
+        })
+        .catch(() => {
+          alert('नक्सा खोज गर्न सकिएन।');
+        });
+    }
+
+    function confirmSelectedLocation() {
+      const latStr = currentLat.toFixed(5);
+      const lngStr = currentLng.toFixed(5);
+      const locName = currentAddress;
+
+      // Pass directly to native Android Kotlin Bridge
+      if (window.AndroidMapBridge && typeof window.AndroidMapBridge.onLocationConfirmed === 'function') {
+        window.AndroidMapBridge.onLocationConfirmed(latStr, lngStr, locName);
+      } else if (window.parent && window.parent.onMapLocationSelected) {
+        window.parent.onMapLocationSelected(latStr, lngStr, locName);
+      } else {
+        alert(`✅ लोकेसन सुरक्षित भयो!\nस्थान: ${locName}\nकोअर्डिनेट्स: ${latStr}° N, ${lngStr}° E`);
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', initNepalMap);
+  </script>
+</body>
+</html>

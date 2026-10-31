@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Aajako Bazar — Developmental History & Future Milestones (D3.js)</title>
+  <meta name="description" content="Visual D3.js timeline displaying the developmental history and future milestones of the Aajako Bazar project">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --bg-dark: #0B1220;
+      --card-dark: #121E34;
+      --card-border: #1E2D4A;
+      --text-main: #F1F5F9;
+      --text-sub: #94A3B8;
+      --primary-blue: #0F4C9A;
+      --accent-saffron: #F28C0F;
+      --accent-emerald: #10B981;
+      --accent-cyan: #06B6D4;
+      --accent-purple: #8B5CF6;
+      --accent-rose: #F43F5E;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif; }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      padding: 12px;
+    }
+
+    .tl-header {
+      background: linear-gradient(135deg, rgba(15, 76, 154, 0.35), rgba(242, 140, 15, 0.15));
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 16px 20px;
+      margin-bottom: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    .tl-title-group h1 {
+      font-size: 20px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #FFFFFF;
+      letter-spacing: -0.3px;
+    }
+
+    .tl-title-group p {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-top: 3px;
+    }
+
+    .tl-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tl-btn {
+      background: var(--card-dark);
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 7px 13px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    .tl-btn:hover { background: rgba(255,255,255,0.08); border-color: var(--accent-saffron); }
+    .tl-btn.primary { background: var(--accent-saffron); color: #000; border-color: var(--accent-saffron); }
+    .tl-btn.primary:hover { background: #FFA32B; }
+    .tl-btn.tour-active { background: var(--accent-rose); color: #FFF; border-color: var(--accent-rose); animation: pulseBtn 1.2s infinite; }
+
+    @keyframes pulseBtn {
+      0% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.6); }
+      70% { box-shadow: 0 0 0 10px rgba(244, 63, 94, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); }
+    }
+
+    /* Filter Toolbar */
+    .tl-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      background: var(--card-dark);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 10px 14px;
+    }
+
+    .tl-filters {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 2px;
+    }
+
+    .tl-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-sub);
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .tl-chip.active {
+      background: var(--primary-blue);
+      color: #FFFFFF;
+      border-color: #38BDF8;
+      box-shadow: 0 2px 8px rgba(56, 189, 248, 0.25);
+    }
+
+    .tl-chip.future.active {
+      background: var(--accent-purple);
+      border-color: #C084FC;
+      box-shadow: 0 2px 8px rgba(192, 132, 252, 0.3);
+    }
+
+    .tl-zoom-controls {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .tl-zoom-btn {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .tl-zoom-btn:hover { background: rgba(255, 255, 255, 0.15); }
+
+    /* Timeline Canvas Container */
+    .tl-canvas-card {
+      background: var(--card-dark);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      margin-bottom: 14px;
+    }
+
+    #d3TimelineCanvas {
+      width: 100%;
+      height: 340px;
+      cursor: grab;
+      display: block;
+    }
+
+    #d3TimelineCanvas:active {
+      cursor: grabbing;
+    }
+
+    .tl-canvas-hint {
+      position: absolute;
+      bottom: 8px;
+      right: 14px;
+      font-size: 11px;
+      color: var(--text-sub);
+      pointer-events: none;
+      background: rgba(11, 18, 32, 0.7);
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* Milestone Detail Drawer */
+    .tl-detail-card {
+      background: var(--card-dark);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .tl-detail-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 14px;
+      margin-bottom: 14px;
+    }
+
+    .tl-detail-title-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tl-detail-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      background: rgba(15, 76, 154, 0.25);
+      border: 1px solid rgba(15, 76, 154, 0.4);
+      flex-shrink: 0;
+    }
+
+    .tl-phase-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent-saffron);
+      margin-bottom: 2px;
+    }
+
+    .tl-detail-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    .tl-detail-subtitle {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-top: 3px;
+      line-height: 1.4;
+    }
+
+    .tl-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .tl-status-completed {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34D399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .tl-status-current {
+      background: rgba(242, 140, 15, 0.15);
+      color: #FBBF24;
+      border: 1px solid rgba(242, 140, 15, 0.4);
+      animation: pulsePill 2s infinite;
+    }
+
+    .tl-status-future {
+      background: rgba(139, 92, 246, 0.15);
+      color: #A78BFA;
+      border: 1px solid rgba(139, 92, 246, 0.35);
+    }
+
+    @keyframes pulsePill {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    /* Metrics Grid */
+    .tl-metrics-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .tl-metric-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 10px;
+    }
+
+    .tl-metric-label {
+      font-size: 11px;
+      color: var(--text-sub);
+      font-weight: 600;
+    }
+
+    .tl-metric-val {
+      font-size: 16px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-top: 2px;
+    }
+
+    /* Deliverables List */
+    .tl-deliv-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent-cyan);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tl-deliv-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .tl-deliv-item {
+      font-size: 13px;
+      line-height: 1.5;
+      color: #E2E8F0;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .tl-deliv-item span.icon {
+      color: var(--accent-emerald);
+      font-size: 14px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Tech Stack Chips */
+    .tl-tech-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .tl-tech-tag {
+      background: rgba(15, 76, 154, 0.2);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #38BDF8;
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 11.5px;
+      font-weight: 600;
+    }
+
+    /* Stepper Navigation */
+    .tl-stepper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+      border-top: 1px solid var(--card-border);
+      padding-top: 12px;
+    }
+
+    /* Floating Tooltip */
+    #tlTooltip {
+      position: absolute;
+      display: none;
+      background: rgba(18, 30, 52, 0.95);
+      color: #F1F5F9;
+      border: 1px solid #38BDF8;
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      pointer-events: none;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+      max-width: 250px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .tl-header { padding: 12px 14px; }
+      .tl-title-group h1 { font-size: 17px; }
+      #d3TimelineCanvas { height: 300px; }
+      .tl-detail-card { padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="tl-header">
+    <div class="tl-title-group">
+      <h1>
+        <span>🚀</span>
+        <span id="txtHeaderTitle">आजको बजार — परियोजना टाइमलाइन (D3.js)</span>
+      </h1>
+      <p id="txtHeaderSubtitle">
+        २०२३ को शुरुआती अवधारणा, अफलाइन इन्जिन, शून्य-विश्वास सुरक्षा, वेबआरटिसी कल, मल्टिमोडल एआई देखि २०२७+ मेश नेटवर्कसम्मको विकास इतिहास
+      </p>
+    </div>
+    <div class="tl-actions">
+      <button id="btnAutoTour" class="tl-btn primary" title="Start guided story tour">
+        <span>▶</span> <span id="txtBtnTour">स्टोरी टुर (Auto-Tour)</span>
+      </button>
+      <button id="btnExportSvg" class="tl-btn" title="Download High-Res Roadmap">
+        <span>🖼️</span> <span id="txtBtnExport">निर्यात (PNG)</span>
+      </button>
+      <button id="btnLangToggle" class="tl-btn" title="Toggle Language">
+        <span>🌐</span> <span id="txtBtnLang">English</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Filter & Zoom Bar -->
+  <section class="tl-toolbar">
+    <div class="tl-filters">
+      <button class="tl-chip active" data-filter="all">सबै (All 9)</button>
+      <button class="tl-chip" data-filter="history">✅ सम्पन्न इतिहास (History 6)</button>
+      <button class="tl-chip future" data-filter="future">🔮 आगामी मार्गचित्र (Future 3)</button>
+      <button class="tl-chip" data-category="Architecture">🏛️ Architecture</button>
+      <button class="tl-chip" data-category="Real-Time">🤝 Real-Time & VoIP</button>
+      <button class="tl-chip" data-category="Fintech">🧾 Fintech & Khata</button>
+      <button class="tl-chip" data-category="AI & ML">🤖 AI Logic</button>
+    </div>
+    <div class="tl-zoom-controls">
+      <button id="btnZoomIn" class="tl-zoom-btn" title="Zoom In">+</button>
+      <button id="btnZoomOut" class="tl-zoom-btn" title="Zoom Out">−</button>
+      <button id="btnZoomReset" class="tl-zoom-btn" title="Reset View">⟲</button>
+    </div>
+  </section>
+
+  <!-- Interactive D3 Canvas -->
+  <main class="tl-canvas-card">
+    <svg id="d3TimelineCanvas"></svg>
+    <div class="tl-canvas-hint" id="txtCanvasHint">🖱️ ड्र्याग गरेर सार्नुहोस् वा नोडमा थिच्नुहोस् (Drag to pan · Scroll/pinch to zoom · Tap to inspect)</div>
+    <div id="tlTooltip"></div>
+  </main>
+
+  <!-- Selected Milestone Deep-Dive Card -->
+  <section class="tl-detail-card" id="milestoneDetailCard">
+    <div class="tl-detail-header">
+      <div class="tl-detail-title-row">
+        <div class="tl-detail-icon" id="detailIcon">🏛️</div>
+        <div>
+          <span class="tl-phase-badge" id="detailPhase">चरण १ · Q1 2023</span>
+          <h2 class="tl-detail-title" id="detailTitle">Genesis & Offline-First Core</h2>
+          <div class="tl-detail-subtitle" id="detailSubtitle">
+            Architectural groundwork, PWA Service Worker caching & dual-layer local persistence
+          </div>
+        </div>
+      </div>
+      <div id="detailStatusPill" class="tl-status-pill tl-status-completed">
+        <span>✓</span> <span>सम्पन्न (Completed)</span>
+      </div>
+    </div>
+
+    <!-- Metrics Stats -->
+    <div class="tl-metrics-row" id="detailMetrics"></div>
+
+    <!-- Deliverables Checklist -->
+    <div class="tl-deliv-title">
+      <span>📌</span> <span id="txtDelivTitle">मुख्य उपलब्धि तथा प्राविधिक कार्यान्वयन (Key Deliverables)</span>
+    </div>
+    <ul class="tl-deliv-list" id="detailDeliverables"></ul>
+
+    <!-- Tech Stack Chips -->
+    <div class="tl-deliv-title" style="color: var(--accent-saffron); margin-top: 14px;">
+      <span>🛠️</span> <span id="txtTechTitle">प्रविधि स्ट्याक तथा आर्किटेक्चर (Tech Stack)</span>
+    </div>
+    <div class="tl-tech-row" id="detailTech"></div>
+
+    <!-- Stepper Navigation -->
+    <div class="tl-stepper">
+      <button id="btnPrevMilestone" class="tl-btn">
+        <span>←</span> <span id="txtPrev">अघिल्लो चरण</span>
+      </button>
+      <span style="font-size: 12px; color: var(--text-sub); font-weight: 700;" id="txtStepIndicator">
+        माइलस्टोन १ / ९
+      </span>
+      <button id="btnNextMilestone" class="tl-btn primary">
+        <span id="txtNext">पछिल्लो चरण</span> <span>→</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- D3.js v7 Local Library -->
+  <script src="js/d3.v7.min.js"></script>
+  <!-- Timeline Component Logic -->
+  <script src="js/d3-chart.js"></script>
+  <script>
+    // Initialize full-page interactive timeline
+    window.addEventListener('DOMContentLoaded', () => {
+      if (typeof window.initStandaloneTimelineView === 'function') {
+        window.initStandaloneTimelineView();
+      }
+    });
+  </script>
+</body>
+</html>
