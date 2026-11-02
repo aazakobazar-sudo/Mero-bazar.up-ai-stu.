@@ -1,6 +1,6 @@
 {
-  "name": "Remix Remix Surya Kafle Portfolio",
-  "description": "Professional software engineer portfolio showcasing the flagship Aajako Bazar big market project, case studies, interactive live demo, and tech architecture.",
+  "name": "Mero Bazar",
+  "description": "मेरो बजार (Mero Bazar) — Nepal's trusted multi-merchant digital marketplace with real-time Firestore sync, WebRTC audio/video calling, interactive Nepal map, and digital khata.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

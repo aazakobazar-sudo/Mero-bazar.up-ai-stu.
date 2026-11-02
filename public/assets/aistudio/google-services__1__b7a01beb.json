@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "813051695868",
+    "firebase_url": "https://aazabo-bazar-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "aazabo-bazar",
+    "storage_bucket": "aazabo-bazar.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813051695868:android:c45a264e0bce9c65967d79",
+        "android_client_info": {
+          "package_name": "Aazakobazar.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "813051695868-ho10bhu6quiidqd2vg6amj503nqannvp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIrknD0LsDtThvpSfIyE6fvbeh1fTX7Ms"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "813051695868-ho10bhu6quiidqd2vg6amj503nqannvp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813051695868:android:000dde94b2cef54b967d79",
+        "android_client_info": {
+          "package_name": "com.nepa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "813051695868-ho10bhu6quiidqd2vg6amj503nqannvp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIrknD0LsDtThvpSfIyE6fvbeh1fTX7Ms"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "813051695868-ho10bhu6quiidqd2vg6amj503nqannvp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -247,6 +247,12 @@ fun OpenBazarApp(
     var canGoBack by remember { mutableStateOf(false) }
     var isLoading by remember { mutableStateOf(true) }
 
+    // Safety timeout: ensure loading screen dismisses promptly within 1.2s
+    LaunchedEffect(Unit) {
+        kotlinx.coroutines.delay(1200)
+        isLoading = false
+    }
+
     // Intercept back button to navigate backwards in web history if possible
     BackHandler(enabled = canGoBack) {
         webViewInstance?.let { webView ->
@@ -452,6 +458,11 @@ fun OpenBazarApp(
                             override fun onPermissionRequest(request: PermissionRequest?) {
                                 request?.let { onRequestMediaPermission(it) }
                             }
+
+                            override fun onConsoleMessage(consoleMessage: ConsoleMessage?): Boolean {
+                                android.util.Log.d("OpenBazarJS", "${consoleMessage?.message()} -- From line ${consoleMessage?.lineNumber()} of ${consoleMessage?.sourceId()}")
+                                return true
+                            }
                         }
 
                         // Register native Android Bridge for real downloading and real sharing
@@ -503,17 +514,14 @@ fun OpenBazarApp(
             )
 
             if (isLoading) {
-                Box(
+                LinearProgressIndicator(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .background(Color(0xFF0B1220)),
-                    contentAlignment = Alignment.Center
-                ) {
-                    CircularProgressIndicator(
-                        color = Color(0xFFE8820C), // Open Bazar Saffron color
-                        modifier = Modifier.size(44.dp)
-                    )
-                }
+                        .fillMaxWidth()
+                        .align(Alignment.TopCenter)
+                        .height(3.dp),
+                    color = Color(0xFFE8820C),
+                    trackColor = Color.Transparent
+                )
             }
         }
     }

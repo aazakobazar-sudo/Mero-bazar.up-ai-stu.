@@ -6,63 +6,91 @@ service cloud.firestore {
         && get(/databases/$(database)/documents/cfg/admin).data.uid == request.auth.uid;
     }
     match /cfg/admin {
-      allow read: if request.auth != null;
+      allow read: if true;
       allow create: if request.auth != null && !exists(/databases/$(database)/documents/cfg/admin)
         && request.resource.data.uid == request.auth.uid
         && request.auth.token.email == 'aazakobazar@gmail.com';
     }
     match /pub/{uid} {
-      allow read: if request.auth != null;
-      allow write: if request.auth != null && request.auth.uid == uid
-        && request.resource.data.j is string && request.resource.data.j.size() < 40000;
+      allow read: if true;
+      allow write: if request.auth != null && (request.auth.uid == uid || isAdmin())
+        && request.resource.data.j is string && request.resource.data.j.size() < 60000;
     }
     match /priv/{uid} {
-      allow read, write: if request.auth != null && request.auth.uid == uid
-        && (request.method == 'get' || request.resource.data.j.size() < 40000);
+      allow read, write: if request.auth != null && (request.auth.uid == uid || isAdmin())
+        && (request.method == 'get' || request.resource.data.j.size() < 60000);
     }
     match /dir/{uid} {
-      allow read: if request.auth != null && (request.auth.uid == uid || isAdmin());
-      allow write: if request.auth != null && request.auth.uid == uid;
+      allow read: if true;
+      allow write: if request.auth != null && (request.auth.uid == uid || isAdmin());
+    }
+
+    // PDF Table 4.2.2 SHOPS TABLE
+    match /shops/{sid} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // PDF Table 4.2.3 PRODUCTS TABLE
+    match /products/{pid} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // PDF Table 4.2.4 ORDERS TABLE
+    match /orders/{oid} {
+      allow read: if true;
+      allow create, update: if true;
+    }
+
+    // PDF Table 4.2.6 CHAT TABLE (Real-time live messaging between buyers and merchants)
+    match /chats/{msgId} {
+      allow read: if true;
+      allow create, update: if true;
+      allow delete: if request.auth != null && isAdmin();
+    }
+
+    // PDF Table 4.2.5 KHATA TABLE (Digital ledger)
+    match /khata/{kid} {
+      allow read: if true;
+      allow create, update: if true;
+      allow delete: if request.auth != null && isAdmin();
+    }
+
+    // PDF Table 4.2.5 VIDEOS TABLE (Video Bazar Feed)
+    match /videos/{vid} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // PDF Table 4.2.4 PAYMENTS TABLE
+    match /pays/{pid} {
+      allow read: if true;
+      allow create, update: if true;
     }
 
     match /logins/{lid} {
-      allow create: if request.auth != null && request.resource.data.uid == request.auth.uid;
+      allow create: if true;
       allow read: if request.auth != null && isAdmin();
     }
 
     match /profs/{uid} {
-      allow read: if request.auth != null && (request.auth.uid == uid || isAdmin());
-      allow write: if request.auth != null && request.auth.uid == uid;
+      allow read: if true;
+      allow write: if request.auth != null && (request.auth.uid == uid || isAdmin());
     }
 
     match /imgs/{id} {
-      allow read: if request.auth != null;
-      allow write: if request.auth != null && id.matches(request.auth.uid + '_.*')
-        && request.resource.data.d.size() < 200000;
+      allow read: if true;
+      allow write: if true;
     }
     match /approvals/{uid} {
-      allow read: if request.auth != null;
+      allow read: if true;
       allow write: if request.auth != null && isAdmin();
-    }
-    match /orders/{oid} {
-      allow read: if request.auth != null && (resource.data.cuid == request.auth.uid || resource.data.muid == request.auth.uid);
-      allow create: if request.auth != null && request.resource.data.cuid == request.auth.uid;
-      allow update: if request.auth != null && (resource.data.cuid == request.auth.uid || resource.data.muid == request.auth.uid);
-    }
-    match /pays/{pid} {
-      allow read: if request.auth != null && (resource.data.muid == request.auth.uid || isAdmin());
-      allow create: if request.auth != null && request.resource.data.muid == request.auth.uid;
-      allow update: if request.auth != null && (resource.data.muid == request.auth.uid || isAdmin());
     }
 
     match /inquiries/{inqId} {
-      allow create: if request.resource.data.name is string
-        && request.resource.data.email is string
-        && request.resource.data.subject is string
-        && request.resource.data.message is string
-        && request.resource.data.message.size() >= 10
-        && request.resource.data.message.size() <= 5000;
-      allow read: if request.auth != null && (isAdmin() || (resource.data.uid != null && resource.data.uid == request.auth.uid));
+      allow create: if true;
+      allow read: if true;
       allow update, delete: if request.auth != null && isAdmin();
     }
   }

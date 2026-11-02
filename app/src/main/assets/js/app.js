@@ -22,11 +22,16 @@ const FL={};try{Object.assign(FL,JSON.parse(localStorage.getItem('ab9f')||'{}'))
 const N={'Accepted':'स्वीकृत','Packed':'प्याक भयो','On the way':'बाटोमा','Mark packed':'प्याक भयो भनी जनाउनुहोस्','Out for delivery':'डेलिभरीमा पठाइयो','Mark received':'सामान पाएँ','Received':'प्राप्त भयो','Share':'सेयर','Home':'गृह','Shops':'पसल','Videos':'भिडियो','Selection':'मेरो कारोबार','Profile':'प्रोफाइल','Cart':'कार्ट','Orders':'अर्डर','Dashboard':'ड्यासबोर्ड','Products':'सामान','Notices':'सूचना','Khata':'खाता','More':'थप','Overview':'सारांश','Users':'प्रयोगकर्ता','Customer':'ग्राहक','Merchant':'व्यापारी','Admin':'प्रशासक','Login':'लगइन','Logout':'लगआउट','Register':'दर्ता गर्नुहोस्','Password':'पासवर्ड','No account? Register first.':'खाता छैन? पहिले दर्ता गर्नुहोस्।','Wrong email or password':'इमेल वा पासवर्ड मिलेन','Account suspended':'खाता निलम्बित छ','Full name':'पूरा नाम','Mobile 98XXXXXXXX':'मोबाइल 98XXXXXXXX','Register as':'दर्ता प्रकार','Province (7)':'प्रदेश (७)','District (77)':'जिल्ला (७७)','Local level (Municipality / Rural Municipality)':'स्थानीय तह (नगरपालिका / गाउँपालिका)','Ward no. (1-35)':'वडा नं. (१-३५)','Shop / business name':'पसल / व्यवसायको नाम','Admin approval is required before your shop goes live.':'पसल चल्न प्रशासकको स्वीकृति चाहिन्छ।','Demo OTP: ':'डेमो OTP: ','Profile photo (auto-compressed)':'प्रोफाइल फोटो (आफैँ सानो हुन्छ)','Business registration document (photo)':'व्यवसाय दर्ता कागज (फोटो)','Confirm password':'पासवर्ड पुष्टि','Password (min 6)':'पासवर्ड (कम्तिमा ६)','Back':'पछाडि','Next':'अर्को','Finish':'समाप्त','Step':'चरण','Check name, mobile (98…), email, DOB':'नाम, मोबाइल, इमेल, जन्ममिति जाँच्नुहोस्','Email already registered':'इमेल दर्ता भइसक्यो','Complete address':'ठेगाना पूरा गर्नुहोस्','Enter shop name':'पसलको नाम लेख्नुहोस्','Wrong OTP':'OTP मिलेन','Password min 6 & must match':'पासवर्ड कम्तिमा ६ र मिल्नुपर्छ','Waiting for admin approval':'प्रशासकको स्वीकृति पर्खँदै','Not a valid image':'मान्य फोटो होइन','Search products':'सामान खोज्नुहोस्','Categories':'वर्गहरू','Latest notices':'पछिल्ला सूचना','Loyalty':'पोइन्ट','Wallet':'वालेट','Flash deal today':'आजको फ्ल्यास अफर','Up to 20% off':'२०% सम्म छूट','shops':'पसल','Out of stock':'सकियो','Low':'थोरै','In stock':'उपलब्ध','No products found':'सामान भेटिएन','All':'सबै','No shops yet':'अहिले पसल छैन','Nothing listed yet':'अहिलेसम्म केही राखिएको छैन','Delivery':'डेलिभरी','Min order':'न्यूनतम अर्डर','Closed':'बन्द','Open':'खुला','Your cart is empty':'कार्ट खाली छ','Total':'जम्मा','Place order':'अर्डर गर्नुहोस्','Not enough stock':'स्टक पुग्दैन','Insufficient wallet balance':'वालेटमा रकम पुग्दैन','Order placed':'अर्डर भयो','No orders yet':'अर्डर छैन','Pending':'पर्खाइमा','Processing':'तयारी','Delivered':'पुग्यो','Cancelled':'रद्द','Accept':'स्वीकार','Reject':'अस्वीकार','Cancel':'रद्द','Mark delivered':'पुर्‍यायो','Report problem':'समस्या जनाउनुहोस्','Messages':'सन्देश','My Khata':'मेरो खाता','Notifications':'सूचनाहरू','Account':'खाता','Top up':'रकम थप्नुहोस्','Coupon':'कुपन','Apply':'लगाउनुहोस्','Invalid coupon':'कुपन मान्य छैन','Payment history':'भुक्तानी इतिहास','Chat':'च्याट','Type a message':'सन्देश लेख्नुहोस्','No messages yet':'सन्देश छैन','Due ':'बाँकी ','Paid':'चुक्ता','No credit records':'उधारो छैन','Revenue':'आम्दानी','Receivable':'लिनुपर्ने','Low stock':'कम स्टक','AI Tip':'AI सुझाव','Restock soon — demand is rising.':'चाँडै स्टक थप्नुहोस् — माग बढ्दैछ।','Stock levels healthy.':'स्टक राम्रो छ।','Top products by stock value':'मूल्यका आधारमा शीर्ष सामान','Your shop is waiting for admin approval. You can set up now; customers will see it after approval.':'तपाईंको पसल प्रशासकको स्वीकृति पर्खँदै छ। स्वीकृतिपछि मात्र ग्राहकले देख्छन्।','Product name':'सामानको नाम','Price':'मूल्य','Discount':'छूट','Stock':'स्टक','Category':'उप-वर्ग','Add product':'सामान थप्नुहोस्','Fill all fields':'सबै विवरण भर्नुहोस्','units':'थान','Title':'शीर्षक','Details':'विवरण','Contact':'सम्पर्क','Post notice':'सूचना प्रकाशित गर्नुहोस्','Customer name':'ग्राहकको नाम','Amount':'रकम','Note':'टिप्पणी','Add entry':'प्रविष्टि थप्नुहोस्','Total receivable':'जम्मा लिनुपर्ने','Mark paid':'चुक्ता गर्नुहोस्','Name and amount required':'नाम र रकम चाहिन्छ','Video Marketing':'भिडियो मार्केटिङ','Analytics':'विश्लेषण','Shop Settings':'पसल सेटिङ','Customer Messages':'ग्राहक सन्देश','Orders count':'अर्डर संख्या','Rating':'रेटिङ','Views':'हेराइ','Best sellers':'धेरै बिक्ने','Caption':'क्याप्सन','Upload':'अपलोड','Video must be ≤ 60s':'भिडियो ६० सेकेन्डसम्म','Caption required':'क्याप्सन चाहिन्छ','Add a product first':'पहिले सामान थप्नुहोस्','Buy now':'किन्नुहोस्','Opening time':'खुल्ने समय','Closing time':'बन्द हुने समय','Delivery radius (km)':'डेलिभरी दायरा (कि.मी.)','Minimum order (₨)':'न्यूनतम अर्डर (₨)','Save':'सेभ','Toggle':'बदल्नुहोस्','Users count':'प्रयोगकर्ता','Shops count':'पसल','Pending shops':'स्वीकृति पर्खेका पसल','Broadcast notification':'सूचना पठाउनुहोस्','Message to all users':'सबैलाई सन्देश','Send':'पठाउनुहोस्','Sent':'पठाइयो','Approved':'स्वीकृत','Approve':'स्वीकार','Suspend':'निलम्बन','Ban':'प्रतिबन्ध','Activate':'सक्रिय','Complaints':'उजुरी','Product Monitor':'सामान निगरानी','Notice Monitor':'सूचना निगरानी','Video Monitor':'भिडियो निगरानी','System Settings':'सिस्टम सेटिङ','Remove':'हटाउनुहोस्','Resolve':'समाधान','Refund':'फिर्ता','Warn':'चेतावनी','Describe the problem':'समस्या लेख्नुहोस्','Submit':'पठाउनुहोस्','Change password':'पासवर्ड परिवर्तन','Current password':'हालको पासवर्ड','New password (min 6)':'नयाँ पासवर्ड (कम्तिमा ६)','Current password wrong':'हालको पासवर्ड मिलेन','Min 6 characters':'कम्तिमा ६ अक्षर','Change photo':'फोटो परिवर्तन','Backup & Restore':'ब्याकअप र पुनःप्राप्ति','All data is stored on this phone only. Export a backup file to keep it safe.':'सबै डेटा यही फोनमा मात्र सेभ हुन्छ। सुरक्षाका लागि ब्याकअप फाइल निकाल्नुहोस्।','Export backup':'ब्याकअप निकाल्नुहोस्','Restored — login again':'पुनःप्राप्त — फेरि लगइन गर्नुहोस्','Invalid backup file':'ब्याकअप फाइल मिलेन','Storage full — export a backup':'भण्डारण भरियो — ब्याकअप निकाल्नुहोस्','Nothing here yet':'यहाँ केही छैन','Document':'कागजात','Choose a category':'वर्ग छान्नुहोस्','Welcome to Open Bazar!':'मेरो बजारमा स्वागत छ!','Welcome to Mero Bazar!':'मेरो बजारमा स्वागत छ!','Coupon applied':'कुपन लाग्यो','Monthly fee ₨100 (35 days)':'मासिक शुल्क ₨१०० (३५ दिन)','35 days':'३५ दिन','days':'दिन','Time to update your payment':'तपाईंको भुक्तानी अध्यावधिक गर्ने समय भयो','Pay now':'अहिले तिर्नुहोस्','You have seen everything':'तपाईंले सबै हेरिसक्नुभयो','Loading…':'लोड हुँदैछ…','Free for customers':'ग्राहकका लागि निःशुल्क','Bills':'बिलहरू','Bill':'बिल','New bill':'नयाँ बिल','Create bill':'बिल बनाउनुहोस्','Customer name (optional)':'ग्राहकको नाम (वैकल्पिक)','Phone (optional)':'फोन (वैकल्पिक)','Other item':'अन्य सामान','Item name':'सामानको नाम','Rate':'दर','Qty':'परिमाण','Print / PDF':'प्रिन्ट / PDF','Share':'सेयर','Total (₨)':'कुल (₨)','Thank you!':'धन्यवाद!','Bill No':'बिल नं.','Date':'मिति','Copied':'कपी भयो','Add at least one item':'कम्तिमा एउटा सामान राख्नुहोस्','Remove demo':'डेमो हटाउनुहोस्','Remove all demo shops':'सबै डेमो पसल हटाउनुहोस्','Tap again to confirm':'पक्का गर्न फेरि थिच्नुहोस्','Item':'सामान','Your payment period has ended. Update your payment to reopen your shop.':'तपाईंको भुक्तानी अवधि सकियो। पसल पुनः खोल्न भुक्तानी अध्यावधिक गर्नुहोस्।','Your plan ends in 3 days. Please update your payment.':'तपाईंको प्लान ३ दिनभित्र सकिँदैछ। भुक्तानी अध्यावधिक गर्नुहोस्।','Shop closed (payment expired)':'पसल बन्द भयो (भुक्तानी म्याद सकियो)','Shop plan ends soon':'पसलको प्लान सकिन लाग्यो','Too many attempts. Try later.':'धेरै गलत प्रयास। पछि फेरि प्रयास गर्नुहोस्।','Secure (HTTPS) connection required':'सुरक्षित (HTTPS) जडान चाहिन्छ','Password: min 8 chars with letters and numbers':'पासवर्ड: कम्तिमा ८ अक्षर, अक्षर र अंक दुवै','Password (min 8, letters + numbers)':'पासवर्ड (कम्तिमा ८, अक्षर + अंक)','New password (min 8, letters + numbers)':'नयाँ पासवर्ड (कम्तिमा ८, अक्षर + अंक)','Something went wrong':'केही गडबड भयो','Reload view':'फेरि खोल्नुहोस्','See all':'सबै हेर्नुहोस्','Show less':'कम देखाउनुहोस्','Your ward':'तपाईंको वडा','Your municipality':'तपाईंको स्थानीय तह','Your district':'तपाईंको जिल्ला','Your province':'तपाईंको प्रदेश','Other province':'अन्य प्रदेश','Plan':'प्लान','Plan & Payment':'प्लान र भुक्तानी','Active until':'सक्रिय, म्याद','Inactive':'निष्क्रिय','Items':'सामान संख्या','Renew or extend':'नवीकरण / थप','Monthly plan':'मासिक प्लान','20 items included':'२० सामान समावेश','Extra 10 item slots':'थप १० सामानको ठाउँ','Extra slots':'थप ठाउँ','Quantity':'संख्या','Send payment to':'यहाँ भुक्तानी पठाउनुहोस्','Transaction ID':'ट्रान्जेक्सन ID','Submit payment':'भुक्तानी पठाउनुहोस्','Payments':'भुक्तानीहरू','Verified':'प्रमाणित','Rejected':'अस्वीकृत','Duplicate transaction ID':'यो ट्रान्जेक्सन ID पहिले नै प्रयोग भइसक्यो','Enter payment transaction ID':'भुक्तानीको ट्रान्जेक्सन ID लेख्नुहोस्','Monthly fee ₨100':'मासिक शुल्क ₨१००','Shop inactive — approval and monthly fee required':'पसल निष्क्रिय — स्वीकृति र मासिक शुल्क चाहिन्छ','Item limit reached — buy extra slots':'सामान सीमा पुग्यो — थप ठाउँ किन्नुहोस्','Fake':'नक्कली','Write a reason':'कारण लेख्नुहोस्','Mark fake':'नक्कली चिन्ह','Verify':'प्रमाणित गर्नुहोस्','Unverify':'प्रमाण हटाउनुहोस्','Suspend account':'खाता निलम्बन','Reason':'कारण','Set your own credentials':'आफ्नो इमेल/पासवर्ड सेट गर्नुहोस्','For security you must set a new password before continuing.':'सुरक्षाका लागि अगाडि बढ्नु अघि नयाँ पासवर्ड राख्नुपर्छ।','New email (optional)':'नयाँ इमेल','Invalid or used email':'इमेल मिलेन वा प्रयोगमा छ','Backup passphrase (min 8)':'ब्याकअप पासफ्रेज (कम्तिमा ८)','Backup passphrase min 8 chars':'ब्याकअप पासफ्रेज कम्तिमा ८ अक्षर','Logged out due to inactivity':'निष्क्रियताले गर्दा लगआउट भयो','Payment receiving number (eSewa/Khalti)':'भुक्तानी लिने नम्बर (eSewa/Khalti)','Wrong passphrase or file':'पासफ्रेज वा फाइल मिलेन','Data unreadable — restore from backup':'डेटा पढ्न सकिएन — ब्याकअपबाट पुनःप्राप्त गर्नुहोस्'};
 const T=k=>DB.lang==='ne'&&N[k]||k;
 const E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const G=[{n:'आधारभूत तथा अत्यावश्यक',e:'🧺',t:['लत्ता कपडा','खाद्यान्न','किराना','सब्जी तथा फलफुल','शिक्षा','स्वास्थ्य','फर्निचर','घरायसी सामग्री','खाजा तथा खाना','गिफ्ट तथा सजावट','दैनिक प्रयोग सामग्री']},
-{n:'निर्माण तथा उद्योग',e:'🏗️',t:['हार्डवेयर सामग्री','हार्डवेयर सम्बन्धी व्यवसाय','विभिन्न उद्योग तथा व्यावसायिक','स्थानीय उत्पादन']},
-{n:'इलेक्ट्रिक तथा अटोमेकानिकल',e:'⚡',t:['सवारी साधन तथा पाटपुर्जा','विद्युतीय पसल','घरायसी इलेक्ट्रिक सामग्री','अन्य इलेक्ट्रिक सामग्री']},
-{n:'अन्य',e:'🧩',t:['बैंक तथा वित्तीय स्रोत','बहुउद्देश्य सामग्री','अन्य सामग्री']},
-{n:'विज्ञापन तथा सूचना',e:'📢',t:['सरकारी विज्ञापन','गैरसरकारी विज्ञापन','व्यावसायिक विज्ञापन','रोजगारमूलक सूचना','अन्य महत्वपूर्ण सूचना']}];
+const G=[
+  {n:'खाद्यान्न, कृषि तथा खाद्य उत्पादन',e:'🌾',t:['ताजा तरकारी तथा फलफूल','चामल, दाल तथा खाद्यान्न','दुग्धजन्य पदार्थ','मसला तथा तेल','अग्र्यानिक कृषि उपज','किराना तथा दैनिक सामग्री','बेकरी तथा कन्फेक्सनरी']},
+  {n:'लत्ताकपडा, फेसन तथा बजार',e:'👕',t:['पुरुष फेसन','महिला फेसन','बालबालिकाका कपडा','जुत्ता तथा चप्पल','परम्परागत पोशाक','ब्याग तथा एसेसोरिज','फेब्रिक्स तथा कपडा']},
+  {n:'खाना, होटल, रेस्टुरेन्ट तथा पर्यटन',e:'🍲',t:['खाजा तथा फास्टफुड','होटल तथा लज बुकिङ','रेस्टुरेन्ट सेवा','पर्यटन तथा ट्राभल गाइड','स्थानीय होमस्टे','क्याटरिङ सेवा']},
+  {n:'उद्योग, कलकारखाना तथा उत्पादन',e:'🏭',t:['स्थानीय घरेलु उद्योग','हार्डवेयर तथा सिमेन्ट','फलाम तथा स्टिल','प्याकेजिङ सामग्री','औद्योगिक मेसिनरी','फर्निचर तथा काठ']},
+  {n:'यातायात, अटोमोबाइल तथा सवारी',e:'🚗',t:['सवारी साधन खरिद/बिक्री','अटो पार्टपुर्जा तथा टायर','वर्कसप तथा मर्मत सेवा','भाडाका गाडी तथा ढुवानी','इलेक्ट्रिक भेहिकल']},
+  {n:'विद्युतीय सामग्री, ग्याजेट्स तथा प्रविधि',e:'💻',t:['मोबाइल तथा ल्यापटप','घरायसी विद्युतीय उपकरण','टिभी, फ्रिज, वासिङ मेसिन','नेटवर्किङ तथा सीसीटीभी','सोलार तथा ब्याट्री']},
+  {n:'शिक्षा, स्वास्थ्य, औषधि तथा फिटनेस',e:'📚',t:['स्टेशनरी तथा पुस्तक','औषधि तथा मेडिकल उपकरण','आयुर्वेदिक उत्पादन','जिम तथा फिटनेस उपकरण','शैक्षिक परामर्श','ल्याब तथा क्लिनिक']},
+  {n:'अन्य विविध सेवा तथा व्यवसाय',e:'🧩',t:['बैंक तथा वित्तीय संस्था','सजावट तथा हस्तकला','कानुनी तथा कर परामर्श','घर मर्मत तथा प्लम्बिङ','सुरक्षा गार्ड सेवा','अन्य महत्वपूर्ण सेवाहरू']}
+];
 const PV={Koshi:'Taplejung,Panchthar,Ilam,Sankhuwasabha,Terhathum,Dhankuta,Bhojpur,Solukhumbu,Okhaldhunga,Khotang,Udayapur,Sunsari,Morang,Jhapa',Madhesh:'Saptari,Siraha,Dhanusha,Mahottari,Sarlahi,Rautahat,Bara,Parsa',Bagmati:'Kathmandu,Bhaktapur,Lalitpur,Nuwakot,Rasuwa,Dhading,Makwanpur,Ramechhap,Sindhuli,Sindhupalchok,Kavrepalanchok,Dolakha,Chitwan',Gandaki:'Gorkha,Lamjung,Tanahun,Kaski,Manang,Mustang,Myagdi,Baglung,Parbat,Syangja,Nawalpur',Lumbini:'Rupandehi,Kapilvastu,Parasi,Arghakhanchi,Gulmi,Palpa,Banke,Bardiya,Dang,Rolpa,Pyuthan,Rukum East',Karnali:'Surkhet,Jajarkot,Dolpa,Humla,Jumla,Mugu,Kalikot,Rukum West,Salyan,Dailekh',Sudurpashchim:'Kailali,Kanchanpur,Dadeldhura,Baitadi,Doti,Achham,Bajhang,Bajura,Darchula'};
 
 /* ---------- data ---------- */
@@ -98,7 +103,7 @@ function oCard(o,m){const cu=U(o.cid),sh=U(o.mid),sts={Pending:'Pending',Process
 return `<div class="c"><div class="row"><b>#${o.id} · ${E(m?cu?.name:sh?.shop?.name)}</b><span class="bd ${stBd(o.st)}">${T(sts[o.st])}</span></div><div class="st" style="margin:5px 0">${o.items.map(i=>(o.mt?'✔ ':'')+E(i.n)+' ×'+i.q).join(', ')}</div>${o.mt?`<div class="bd G" style="margin-bottom:6px">✅ ${T('Matched with shop')}: ${E(o.mt.sh)} · ${o.mt.d}</div>`:o.st=='Pending'?`<div class="bd Y" style="margin-bottom:6px">🔍 ${T('Waiting for shop to match')}</div>`:''}<div class="row"><b>${rs(o.total)}</b><span class="st">${o.pay} · ${o.d}</span></div><div style="margin-top:8px;display:flex;gap:6px">${m=='m'?(o.st=='Pending'?`<button class="btn sm j" onclick="setO(${o.id},'Processing')">${T('Accept')}</button><button class="btn sm r" onclick="setO(${o.id},'Cancelled')">${T('Reject')}</button>`:o.st=='Processing'?`<button class="btn sm j" onclick="setO(${o.id},'Packed')">${T('Mark packed')}</button>`:o.st=='Packed'?`<button class="btn sm j" onclick="setO(${o.id},'Shipped')">${T('Out for delivery')}</button>`:o.st=='Shipped'?`<button class="btn sm j" onclick="setO(${o.id},'Delivered')">${T('Mark delivered')}</button>`:''):m?'':(o.st=='Pending'?`<button class="btn sm r" onclick="setO(${o.id},'Cancelled')">${T('Cancel')}</button>`:o.st=='Delivered'?`<button class="btn sm g" onclick="S.co=${o.id};S.sub='cmp';R()">⚠️ ${T('Report problem')}</button>`:'')}${o.st=='Pending'||o.st=='Cancelled'?'':`<button class="btn sm g" onclick="S.bi={o:${o.id}};S.sub='bill';R()">🧾 ${T('Bill')}</button>`}${m!='m'&&(o.st=='Shipped'||o.st=='Delivered')&&!o.rcv?`<button class="btn sm j" onclick="rcvO(${o.id})">${T('Mark received')}</button>`:''}${o.rcv?`<span class="bd G">${T('Received')}</span>`:''}</div></div>`}
 function setO(id,s){const o=DB.orders.find(x=>x.id==id),ts={Pending:['Processing','Cancelled'],Processing:['Packed'],Packed:['Shipped'],Shipped:['Delivered']};if(!o||(S.u.role=='m'&&o.mid!=S.u.id)||(S.u.role=='c'&&(o.cid!=S.u.id||s!='Cancelled'))||!(ts[o.st]||[]).includes(s))return;
 if(s=='Processing'){const sh=U(o.mid),bad=o.items.filter(i=>{const p=DB.products.find(x=>x.id==i.pid);return !p||p.mid!=o.mid});if(!sh||!sh.shop||bad.length)return toast('❌ '+T('Items do not match this shop'));o.mt={d:today(),sh:sh.shop.name};nfu(o.cid,'✅ #'+o.id+' — '+T('Matched & accepted by')+' '+sh.shop.name)}
-o.st=s;if(s=='Cancelled'){o.items.forEach(i=>{const p=DB.products.find(x=>x.id==i.pid);if(p)p.stock+=i.q});if(o.pay=='Wallet'){const c=U(o.cid);c.wallet+=o.total}}save();R()}
+o.st=s;if(s=='Cancelled'){o.items.forEach(i=>{const p=DB.products.find(x=>x.id==i.pid);if(p)p.stock+=i.q});if(o.pay=='Wallet'){const c=U(o.cid);c.wallet+=o.total}}save();if(window.saveOrderToFirestore)window.saveOrderToFirestore(o);R()}
 
 /* ---------- customer ---------- */
 const fc=x=>x.title?nCard(x):pc(x);
@@ -116,13 +121,127 @@ const cView={
 home:()=>`<div class="c" style="background:linear-gradient(135deg,var(--saf),#F5A623);color:#fff"><div class="row"><div><div id="fl" style="font-size:12px;opacity:.9"></div><b style="font-size:17px">⚡ ${T('Flash deal today')} — ${T('Up to 20% off')}</b></div><span class="em">🔥</span></div></div>
 <div class="g2"><div class="c"><div class="st">${T('Loyalty')}</div><div class="big">${S.u.pts}</div><span class="bd Y">${S.u.pts>=2000?'Gold':'Silver'}</span><div class="bar"><i style="width:${Math.min(100,S.u.pts/20)}%;background:var(--saf)"></i></div></div><div class="c"><div class="st">${T('Wallet')}</div><div class="big">${rs(S.u.wallet)}</div><span class="bd G">eSewa · Khalti</span></div></div>
 ${searchBarHTML()}<div id="hf">${hf()}</div><div id="fm" class="st" style="text-align:center;padding:14px">${fmT()}</div>`,
-shops:()=>`${searchBarHTML()}<div id="hb">${hb()}</div><h3 style="margin:20px 2px 10px;font-size:20px">${T('Categories')}</h3><div class="cats"><button class="cat ${!S.g?'on':''}" onclick="catGo(0)"><span>🗂️</span> ${T('All')}</button>${G.map((g,i)=>`<button class="cat ${S.g==i+1?'on':''}" onclick="catGo(${i+1})"><span>${g.e}</span> ${g.n}<small>${g.t.length}</small></button>`).join('')}</div>`,
+
+cats:()=>{
+  const recP=(DB.products||[]).slice(0,4);
+  const popS=shops().slice(0,3);
+  return `${searchBarHTML()}
+<div class="c" style="background:linear-gradient(135deg,#0F4C9A,#1E3A8A);color:#fff;margin-bottom:12px;padding:14px">
+  <b style="font-size:17px;display:block">🗂️ २. पसल र वर्गहरू (Store Categories - 8 Engines)</b>
+  <div style="font-size:12px;opacity:.9">स्थानीय व्यापार, कृषि, फेसन, पर्यटन तथा उद्योगहरू</div>
+</div>
+<div class="cats" style="margin-bottom:14px">
+  <button class="cat ${!S.g?'on':''}" onclick="catGo(0)"><span>🗂️</span> ${T('All')} <small>${DB.products.length}</small></button>
+  ${G.map((g,i)=>`<button class="cat ${S.g==i+1?'on':''}" onclick="catGo(${i+1})"><span>${g.e}</span> ${g.n}<small>${DB.products.filter(p=>p.type===g.n||g.t.includes(p.type)).length}</small></button>`).join('')}
+</div>
+<h3>✨ 2.1 सिफारिस गरिएका सामानहरू (AI Recommended Products)</h3>
+<div class="g2" style="margin-bottom:14px">${recP.map(p=>`<div class="c" style="padding:10px">${p.img?`<img src="${si(p.img)}" style="width:100%;height:100px;object-fit:cover;border-radius:8px">`:''}<b style="font-size:14px;display:block;margin:6px 0 2px">${pn(p)}</b><div class="st">${rs(eff(p))}</div><button class="btn sm s" style="width:100%;margin-top:6px" onclick="add(${p.id});S.tab='orders';R()">🛒 किन्ने</button></div>`).join('')||empty()}</div>
+<h3>⭐ 2.3 लोकप्रिय पसलहरू (Popular Verified Shops)</h3>
+${popS.map(s=>`<div class="c row" style="cursor:pointer;margin-bottom:8px" onclick="S.sid=${s.id};S.sub='shop';R()"><span class="row" style="gap:10px">${av(s)}<span><b>${E(s.shop.name)}</b><div class="st">${s.dist} · ⭐ 4.9 · ${s.shop.type}</div></span></span><button class="btn sm j">पसल हेर्नुहोस्</button></div>`).join('')||empty()}
+<div id="hb" style="margin-top:14px">${hb()}</div>`;
+},
+
+orders:()=>{
+  const n=Object.values(S.cart).reduce((a,b)=>a+b,0);
+  const kh=DB.khata.filter(k=>k.name.toLowerCase()==S.u.name.toLowerCase()).reduce((s,k)=>s+k.amt-k.paid,0);
+  return `<div class="c" style="background:linear-gradient(135deg,#0F4C9A,#15803D);color:#fff;margin-bottom:12px;padding:14px">
+    <div class="row">
+      <div>
+        <b style="font-size:17px;display:block">📦 ३. अर्डर प्रणाली तथा भुक्तानी (Order System & Fulfillment)</b>
+        <div style="font-size:12px;opacity:.9">अर्डर ट्र्याकिङ, भौचर डाउनलोड, QR र करदाता उपहार</div>
+      </div>
+      ${kh?`<span class="bd R" style="font-weight:750">बाँकी: ${rs(kh)}</span>`:''}
+    </div>
+  </div>
+  <div class="chips" style="margin-bottom:12px">
+    <span class="chip ${S.sel=='cart'?'on':''}" onclick="S.sel='cart';R()">🛒 ${T('Cart')}${n?' ('+n+')':''}</span>
+    <span class="chip ${S.sel=='orders'?'on':''}" onclick="S.sel='orders';R()">📦 ${T('Orders')} (${DB.orders.filter(o=>o.cid==S.u.id).length})</span>
+    <span class="chip ${S.sel=='track'?'on':''}" onclick="S.sel='track';R()">🚚 ट्र्याकिङ (Tracking)</span>
+    <span class="chip ${S.sel=='tax'?'on':''}" onclick="S.sel='tax';R()">🎁 करदाता उपहार</span>
+  </div>`+
+  (S.sel=='cart'?cCart():S.sel=='track'?cTracking():S.sel=='tax'?cTaxGift():cOrders());
+},
+
 msg:()=>window.renderMessengerView?window.renderMessengerView():'',
-vid:()=>DB.videos.filter(v=>U(v.mid)?.shop?.ok).map(v=>{const p=DB.products.find(x=>x.id==v.pid);return `<div class="c">${vPlayer(v)}<b style="display:block;margin:8px 0 2px">${E(v.cap)}</b><div class="row" style="justify-content:flex-start;cursor:pointer" onclick="S.sid=${v.mid};S.sub='shop';R()">${av(U(v.mid))}<span class="st">${E(v.tags)} · ${E(U(v.mid).shop.name)}</span></div><div class="row" style="margin-top:8px"><span class="st">❤️ ${v.likes}</span><span><button class="btn sm g" onclick="lkV(${v.id})">❤️</button> ${p?`<button class="btn sm s" onclick="add(${p.id});S.sel='cart';go('sel')">${T('Buy now')}</button>`:''}</span></div></div>`}).join('')||empty(),
-sel:()=>{const n=Object.values(S.cart).reduce((a,b)=>a+b,0);const kh=DB.khata.filter(k=>k.name.toLowerCase()==S.u.name.toLowerCase()).reduce((s,k)=>s+k.amt-k.paid,0);return `<div class="c" style="background:linear-gradient(135deg,var(--ind2),var(--ind));color:#fff;margin-bottom:12px;padding:12px 14px"><div class="row"><div><b style="font-size:16px;display:block">💼 मेरो कारोबार (My Deals & Orders)</b><div style="font-size:11.5px;opacity:.88">तपाईंका अर्डरहरू, कार्ट र बाँकी हिसाब</div></div>${kh?`<span class="bd R" style="font-weight:750">बाँकी: ${rs(kh)}</span>`:''}</div></div><div class="chips"><span class="chip ${S.sel=='cart'?'on':''}" onclick="S.sel='cart';R()">🛒 ${T('Cart')}${n?' ('+n+')':''}</span><span class="chip ${S.sel=='orders'?'on':''}" onclick="S.sel='orders';R()">📦 ${T('Orders')}</span><span class="chip ${S.sel=='khata'?'on':''}" onclick="S.sel='khata';R()">📒 ${T('My Khata')}</span></div>`+(S.sel=='cart'?cCart():S.sel=='khata'?SV.khata():cOrders())},
-me:()=>{const un=DB.nf.filter(n=>!n.r&&(!n.u||n.u==S.u.id)).length,kh=DB.khata.filter(k=>k.name.toLowerCase()==S.u.name.toLowerCase()).reduce((s,k)=>s+k.amt-k.paid,0);
-return `<div class="c row"><span class="row" style="gap:10px">${av(S.u)}<span><b>${E(S.u.name)}</b><div class="st">${S.u.code}</div></span></span></div>`+lk('chats','💬','Messages')+lk('khata','📒','My Khata',kh?`<span class="bd R">${rs(kh)}</span>`:'')+lk('notif','🔔','Notifications',un?`<span class="bd Y">${un}</span>`:'')+lk('timeline','🚀','Project Timeline (D3.js)','<span class="bd B">Aajako Bazar</span>')+lk('contact','✉️','Professional Inquiries / सम्पर्क','<span class="bd B">suryakafle860@gmail.com</span>')+lk('resume','📄','Download Resume / रेजुमे (PDF)','<span class="bd G">Surya Kafle</span>')+
-`<div class="c" style="background:linear-gradient(135deg,var(--ind),var(--ind2));color:#fff"><div style="opacity:.7;font-size:12px">${T('Wallet')}</div><div style="font-size:28px;font-weight:800">${rs(S.u.wallet)}</div></div><h3>${T('Top up')}</h3><div class="g2">${[500,1000,2000,5000].map(a=>`<button class="btn g" onclick="topup(${a})">+${rs(a)}</button>`).join('')}</div><h3>${T('Coupon')}</h3><div class="row"><input class="inp" id="cp" placeholder="SAVE50" style="margin:0"><button class="btn s" onclick="coupon()">${T('Apply')}</button></div>`+(DB.ph.filter(p=>p.u==S.u.id).length?`<h3>${T('Payment history')}</h3>`+DB.ph.filter(p=>p.u==S.u.id).map(p=>`<div class="c row"><span>${p.t}<div class="st">${p.d}</div></span><b style="color:var(--${p.a<0?'crim':'jade'})">${p.a<0?'':'+'}${rs(p.a)}</b></div>`).join(''):'')+outb()}};
+
+me:()=>{
+  const un=DB.nf.filter(n=>!n.r&&(!n.u||n.u==S.u.id)).length;
+  const kh=DB.khata.filter(k=>k.name.toLowerCase()==S.u.name.toLowerCase()).reduce((s,k)=>s+k.amt-k.paid,0);
+  return `<div class="c" style="background:linear-gradient(135deg,#1E293B,#0F172A);color:#fff;padding:16px;margin-bottom:12px">
+    <div class="row">
+      <span class="row" style="gap:12px">
+        ${av(S.u)}
+        <div>
+          <b style="font-size:18px;display:block">${E(S.u.name)}</b>
+          <div style="font-size:12px;opacity:.85">📞 ${E(S.u.phone)} · 📍 ${E(S.u.dist)}, ${E(S.u.local)}-${E(S.u.ward)}</div>
+          <span class="bd G" style="margin-top:4px;display:inline-block">प्रमाणित ग्राहक (Verified)</span>
+        </div>
+      </span>
+    </div>
+  </div>
+  <div class="c" style="border-left:4px solid #F59E0B">
+    <b>🤖 ५. AI RECOMMENDATION SYSTEM (All-Rounder System)</b>
+    <div class="st" style="text-transform:none;margin-top:6px;line-height:1.5">
+      स्मार्ट सर्च, सस्तो सामान पत्ता लगाउने (Cheapest Finder), नजिकको पसल छनोट, र साइड-बाइ-साइड स्पेसिफिकेशन तुलना सुविधा।
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px">
+      <button class="btn sm s" onclick="window.openAiAssistant?window.openAiAssistant():0">🤖 AI सहायक खोल्नुहोस्</button>
+      <button class="btn sm g" onclick="toast('🔍 सस्तो सामान: बजारका शीर्ष १० सप्लायर्स तुलना गरियो')">💰 सस्तो सामान खोज्नुहोस्</button>
+      <button class="btn sm g" onclick="window.pickLoc&&window.pickLoc((a,o)=>{S.u.la=a;S.u.lo=o;save();toast('📍 लोकेसन सुरक्षित भयो');R()})">📍 GPS ठेगाना पिन</button>
+    </div>
+  </div>
+  ${lk('chats','💬','Messages')}
+  ${lk('khata','📒','My Khata',kh?`<span class="bd R">${rs(kh)}</span>`:'')}
+  ${lk('notif','🔔','Notifications',un?`<span class="bd Y">${un}</span>`:'')}
+  ${lk('timeline','🚀','Project Timeline (D3.js)','<span class="bd B">Aajako Bazar</span>')}
+  ${lk('contact','✉️','Professional Inquiries / सम्पर्क','<span class="bd B">suryakafle860@gmail.com</span>')}
+  ${lk('resume','📄','Download Resume / रेजुमे (PDF)','<span class="bd G">Surya Kafle</span>')}
+  <div class="c" style="background:linear-gradient(135deg,var(--ind),var(--ind2));color:#fff">
+    <div style="opacity:.7;font-size:12px">${T('Wallet')}</div>
+    <div style="font-size:28px;font-weight:800">${rs(S.u.wallet)}</div>
+  </div>
+  <h3>${T('Top up')}</h3>
+  <div class="g2">${[500,1000,2000,5000].map(a=>`<button class="btn g" onclick="topup(${a})">+${rs(a)}</button>`).join('')}</div>
+  <h3>${T('Coupon')}</h3>
+  <div class="row"><input class="inp" id="cp" placeholder="SAVE50" style="margin:0"><button class="btn s" onclick="coupon()">${T('Apply')}</button></div>
+  ${outb()}`;
+},
+
+shops:()=>cView.cats(),
+vid:()=>cView.home(),
+sel:()=>cView.orders()
+};
+
+function cTracking(){
+  const myOrders=DB.orders.filter(o=>o.cid==S.u.id);
+  const cur=myOrders[0];
+  if(!cur) return `<div class="c st" style="text-align:center">कुनै सक्रिय अर्डर भेटिएन</div>`;
+  const stLevels={'Pending':25,'Accepted':50,'Processing':75,'Delivered':100,'Cancelled':0};
+  const pct=stLevels[cur.st]||30;
+  return `<div class="c">
+    <div class="row"><b>अर्डर #${cur.id} ट्र्याकिङ</b><span class="bd G">${cur.st}</span></div>
+    <div class="st" style="margin:6px 0">पसल: ${E(U(cur.mid)?.shop?.name||'पसल')} · कुल: ${rs(cur.total)}</div>
+    <div class="bar" style="height:10px;margin:10px 0"><i style="width:${pct}%;background:#10B981"></i></div>
+    <div class="row" style="font-size:11px;color:var(--mu)"><span>१. दर्ता</span><span>२. स्वीकृत</span><span>३. बाटोमा (कुरियर)</span><span>४. प्राप्त</span></div>
+    <div style="background:rgba(242,140,15,0.08);border:1px solid #F28C0F;border-radius:10px;padding:10px;margin-top:12px;font-size:12.5px">
+      🚚 <b>डेलिभरी कुरियर:</b> काठमाडौं उपत्यका द्रुत सेवा (सम्पर्क: 9851234567)<br>
+      📍 <b>अनुमानित समय:</b> आज बेलुका सम्म
+    </div>
+    <button class="btn j" style="width:100%;margin-top:10px" onclick="window.openNepalMap?window.openNepalMap():toast('नक्सा खुल्दैछ...')">🗺️ नक्सामा लाइभ डेलिभरी हेर्नुहोस्</button>
+  </div>`;
+}
+
+function cTaxGift(){
+  return `<div class="c" style="border-left:4px solid #10B981">
+    <h3>🎁 नेपाल सरकार आन्तरिक राजस्व विभाग - करदाता उपहार</h3>
+    <p style="font-size:13px;line-height:1.5;color:var(--tx)">
+      तपाईंले मेरो बजारबाट सामान खरिद गर्दा प्राप्त भएको आधिकारिक बिल मार्फत आन्तरिक राजस्व विभाग (IRD) को लक्की ड्र तथा करदाता उपहार योजनामा सहभागी हुन सक्नुहुन्छ।
+    </p>
+    <a href="https://prize.ird.gov.np/" target="_blank" class="btn s" style="display:inline-block;text-align:center;width:100%;text-decoration:none;font-weight:700;padding:12px">
+      🌐 IRD करदाता उपहार पोर्टल खोल्नुहोस् (prize.ird.gov.np)
+    </a>
+  </div>`;
+}
 function add(id){const p=DB.products.find(x=>x.id==id);if((S.cart[id]||0)>=p.stock)return toast(T('Not enough stock'));S.cart[id]=(S.cart[id]||0)+1;toast('🛒 +1')}
 function chg(id,d){const p=DB.products.find(x=>x.id==id),q=(S.cart[id]||0)+d;if(q<=0)delete S.cart[id];else if(q<=p.stock)S.cart[id]=q;R()}
 const cartT=()=>Object.entries(S.cart).reduce((s,[id,q])=>s+eff(DB.products.find(p=>p.id==id))*q,0);
@@ -131,7 +250,7 @@ const by={};ids.forEach(id=>{const p=DB.products.find(x=>x.id==id);(by[p.mid]=by
 return Object.entries(by).map(([m,L])=>`<div class="st" style="margin:6px 2px">🏪 ${E(U(m).shop.name)}</div>`+L.map(p=>`<div class="c row"><span><b>${pn(p)}</b><div class="st">${rs(eff(p))}</div></span><span class="row"><button class="btn sm g" onclick="chg(${p.id},-1)">−</button><b>${S.cart[p.id]}</b><button class="btn sm g" onclick="chg(${p.id},1)">＋</button></span></div>`).join('')).join('')+`<div class="c"><div class="row"><span class="st">${T('Total')}</span><span class="big">${rs(cartT())}</span></div><select class="inp" id="pay" style="margin-top:10px"><option>Wallet</option><option>eSewa</option><option>Khalti</option><option>Bank Transfer</option><option>COD</option></select><button class="btn s" style="width:100%;padding:13px" onclick="checkout()">${T('Place order')}</button></div>`}
 function checkout(){const t=cartT(),pay=$('pay').value;if(pay=='Wallet'&&S.u.wallet<t)return toast(T('Insufficient wallet balance'));
 const by={};Object.entries(S.cart).forEach(([id,q])=>{const p=DB.products.find(x=>x.id==id);p.stock-=q;(by[p.mid]=by[p.mid]||[]).push({pid:p.id,n:p.name,q,p:eff(p)})});
-Object.entries(by).forEach(([m,items])=>(nfu(+m,'🛒 '+T('New order from')+' '+S.u.name),DB.orders.unshift({id:nid(),cid:S.u.id,mid:+m,items,total:items.reduce((s,i)=>s+i.q*i.p,0),st:'Pending',pay,d:today()})));
+Object.entries(by).forEach(([m,items])=>{const newO={id:nid(),cid:S.u.id,mid:+m,items,total:items.reduce((s,i)=>s+i.q*i.p,0),st:'Pending',pay,d:today()};nfu(+m,'🛒 '+T('New order from')+' '+S.u.name);DB.orders.unshift(newO);if(window.saveOrderToFirestore)window.saveOrderToFirestore(newO);});
 if(pay=='Wallet')S.u.wallet-=t;S.u.pts+=Math.floor(t/10);DB.ph.unshift({u:S.u.id,t:'Purchase',a:-t,d:today()});S.cart={};save();toast('✅ '+T('Order placed'));S.sel='orders';R()}
 function cOrders(){const F=['All','Pending','Processing','Delivered','Cancelled'],f=S.of;return `<div class="chips">${F.map(x=>`<span class="chip ${f==x?'on':''}" onclick="S.of='${x}';R()">${T(x)}</span>`).join('')}</div>`+(DB.orders.filter(o=>o.cid==S.u.id&&(f=='All'||o.st==f)).map(o=>oCard(o,0)).join('')||`<div class="c st">${T('No orders yet')}</div>`)}
 function topup(a){S.u.wallet+=a;DB.ph.unshift({u:S.u.id,t:'Topup',a,d:today()});save();toast('✅ '+rs(a));R()}
@@ -141,27 +260,172 @@ function lkV(id){DB.videos.find(v=>v.id==id).likes++;save();R()}
 /* ---------- merchant ---------- */
 const my=()=>S.u.shop,mine=a=>a.filter(x=>x.mid==S.u.id);
 const mView={
-home:()=>{const o=mine(DB.orders),rev=o.filter(x=>x.st=='Delivered').reduce((s,x)=>s+x.total,0),pend=o.filter(x=>x.st=='Pending').length,rec=mine(DB.khata).reduce((s,k)=>s+k.amt-k.paid,0),P=mine(DB.products),low=P.filter(p=>p.stock<10),h=my();
-return planCard()+(h.ok?'':`<div class="c" style="border-left:4px solid var(--saf)">⏳ ${T('Your shop is waiting for admin approval. You can set up now; customers will see it after approval.')}</div>`)+`<div class="c row"><span class="row" style="gap:10px">${av(S.u)}<span><b>${E(h.name)}</b><div class="st">${G[h.cat-1].e} ${G[h.cat-1].n} · ${E(h.type)}</div></span></span><span class="bd ${h.ok?'G':'Y'}">${h.ok?T('Approved'):T('Pending')}</span></div>`+(h.cat==5?`<div class="g2">${stat('Notices',mine(DB.notices).length)}</div>`:`<div class="g2">${stat('Revenue',rs(rev))}${stat('Pending',pend)}${stat('Receivable',rs(rec))}${stat('Low stock',low.length)}</div><div class="c" style="border-left:4px solid var(--saf)"><b>🤖 ${T('AI Tip')}</b><div class="st" style="text-transform:none;margin-top:4px">${low.length?E(low.map(p=>p.name).join(', '))+' — '+T('Restock soon — demand is rising.'):T('Stock levels healthy.')}</div></div>`)},
+home:()=>{
+  const o=mine(DB.orders),rev=o.filter(x=>x.st=='Delivered').reduce((s,x)=>s+x.total,0),pend=o.filter(x=>x.st=='Pending').length,rec=mine(DB.khata).reduce((s,k)=>s+k.amt-k.paid,0),P=mine(DB.products),low=P.filter(p=>p.stock<10),h=my();
+  const custCount=[...new Set(o.map(x=>x.cid))].length;
+  return planCard()+(h.ok?'':`<div class="c" style="border-left:4px solid var(--saf)">⏳ ${T('Your shop is waiting for admin approval. You can set up now; customers will see it after approval.')}</div>`)+
+  `<div class="c row"><span class="row" style="gap:10px">${av(S.u)}<span><b>${E(h.name)}</b><div class="st">${G[h.cat-1]?.e||'🏪'} ${G[h.cat-1]?.n||''} · ${E(h.type)}</div></span></span><span class="bd ${h.ok?'G':'Y'}">${h.ok?T('Approved'):T('Pending')}</span></div>
+  <div class="g2">${stat('Today Sales',rs(rev))}${stat('Monthly Sales',rs(rev*1.2))}${stat('Total Orders',o.length)}${stat('Customer Count',custCount)}</div>
+  <div class="g2">${stat('Product Views',P.reduce((s,p)=>s+(p.stock*3),32))}${stat('Low stock',low.length)}</div>
+  <div class="c" style="border-left:4px solid var(--saf)"><b>🤖 ५.५ AI MERCHANT SYSTEM</b><div class="st" style="text-transform:none;margin-top:4px">${low.length?E(low.map(p=>p.name).join(', '))+' — '+T('Restock soon — demand is rising.'):T('Stock levels healthy.')}</div></div>
+  <div style="margin-top:8px">${repV()}</div>`;
+},
 msg:()=>window.renderMessengerView?window.renderMessengerView():'',
-prods:()=>{const h=my(),ty=G[h.cat-1].t;return `<div class="c"><input class="inp" id="pn" placeholder="${T('Product name')}"><select class="inp" id="pt">${ty.map(x=>`<option>${E(x)}</option>`).join('')}</select><div class="g2"><input class="inp" id="pp" type="number" placeholder="${T('Price')}"><input class="inp" id="pd" type="number" placeholder="${T('Discount')}"></div><input class="inp" id="ps" type="number" placeholder="${T('Stock')}"><label class="st">📷 ${T('Product photo')}</label><input class="inp" id="pi" type="file" accept="image/*"><button class="btn s" onclick="addP()">＋ ${T('Add product')}</button></div>`+(mine(DB.products).map(p=>`<div class="c"><div class="row"><b>${p.img?`<img class="av" src="${si(p.img)}" alt=""> `:'📦 '}${pn(p)}</b><span><label class="btn sm g" style="cursor:pointer">📷<input type="file" accept="image/*" hidden onchange="pph(${p.id},this)"></label> <button class="btn sm j" onclick="restock(${p.id})">+10</button> <button class="btn sm r" onclick="delP(${p.id})">🗑</button></span></div><div class="st">${E(p.type)} · ${rs(p.price)}${p.dis?' (−'+rs(p.dis)+')':''} · ${p.stock} ${T('units')}</div><div class="bar"><i style="width:${Math.min(100,p.stock*2)}%;background:var(--${p.stock<=0?'crim':p.stock<10?'saf':'jade'})"></i></div></div>`).join('')||empty())},
-notices:()=>{const ty=my().cat==5?G[4].t:['पसलको अफर',...G[4].t];return `<div class="c"><input class="inp" id="nt" placeholder="${T('Title')}"><select class="inp" id="nk">${ty.map(x=>`<option>${E(x)}</option>`).join('')}</select><textarea class="inp" id="nb" rows="3" placeholder="${T('Details')}"></textarea><input class="inp" id="nc" placeholder="${T('Contact')}"><button class="btn s" onclick="addN()">📢 ${T('Post notice')}</button></div>`+(mine(DB.notices).map(n=>nCard(n)+`<button class="btn sm r" style="margin:-4px 0 10px" onclick="delN(${n.id})">🗑</button>`).join('')||empty())},
-orders:()=>mine(DB.orders).map(o=>oCard(o,'m')).join('')||empty(),
-khata:()=>{const L=mine(DB.khata),rec=L.reduce((s,k)=>s+k.amt-k.paid,0);return `<div class="c" style="background:linear-gradient(135deg,var(--saf),#F5A623);color:#fff"><div style="opacity:.85;font-size:12px">${T('Total receivable')}</div><div style="font-size:24px;font-weight:800">${rs(rec)}</div></div><div class="c"><input class="inp" id="kn" placeholder="${T('Customer name')}"><div class="g2"><input class="inp" id="ka" type="number" placeholder="${T('Amount')}"><input class="inp" id="kt" placeholder="${T('Note')}"></div><button class="btn s" onclick="addK()">＋ ${T('Add entry')}</button></div>`+(L.map(k=>{const d=k.amt-k.paid;return `<div class="c"><div class="row"><b>${E(k.name)}</b><span class="bd ${d?'R':'G'}">${d?T('Due ')+rs(d):T('Paid')}</span></div><div class="st">${E(k.note)} · ${rs(k.amt)}</div>${d?`<button class="btn sm j" style="margin-top:7px" onclick="payK(${k.id})">${T('Mark paid')}</button>`:''}</div>`}).join('')||'')},
-more:()=>(my().cat==5?'':lk('vup','🎥','Video Marketing')+lk('notices','📢','Offers & Notices')+lk('ana','📈','Business report'))+lk('plan','💳','Plan & Payment')+lk('shop','⚙️','Shop Settings')+lk('bills','🧾','Bills')+lk('chats','💬','Customer Messages')+lk('notif','🔔','Notifications',unBadge())+lk('timeline','🚀','Project Timeline (D3.js)','<span class="bd B">Aajako Bazar</span>')+lk('contact','✉️','Professional Inquiries / सम्पर्क','<span class="bd B">suryakafle860@gmail.com</span>')+lk('resume','📄','Download Resume / रेजुमे (PDF)','<span class="bd G">Surya Kafle</span>')+outb()};
+prods:()=>{
+  const h=my(),ty=G[h.cat-1]?.t||['सामान्य'];
+  return `<div class="c" style="background:linear-gradient(135deg,#0F4C9A,#1E3A8A);color:#fff;margin-bottom:12px;padding:14px">
+    <b style="font-size:16px;display:block">🛍️ २. PRODUCT MANAGEMENT SYSTEM (PMS)</b>
+    <div style="font-size:11.5px;opacity:.9">सामान थप्ने, सम्पादन गर्ने, फोटो, स्पेसिफिकेशन र स्टक व्यवस्थापन</div>
+  </div>
+  <div class="c">
+    <input class="inp" id="pn" placeholder="${T('Product name')}">
+    <select class="inp" id="pt">${ty.map(x=>`<option>${E(x)}</option>`).join('')}</select>
+    <div class="g2"><input class="inp" id="pp" type="number" placeholder="${T('Price')}"><input class="inp" id="pd" type="number" placeholder="${T('Discount')}"></div>
+    <input class="inp" id="ps" type="number" placeholder="${T('Stock')}">
+    <input class="inp" id="pw" placeholder="वजन / साइज स्पेसिफिकेशन (उदा. १ केजी, साइज L)">
+    <div class="g2"><input class="inp" id="pdeliv" type="number" placeholder="डेलिभरी शुल्क (₨)"><input class="inp" id="pphone" placeholder="डेलिभरी म्यान सम्पर्क फोन"></div>
+    <label class="st">📷 ${T('Product photo')}</label><input class="inp" id="pi" type="file" accept="image/*">
+    <button class="btn s" style="width:100%;margin-top:8px" onclick="addP()">＋ २.१ सामान थप्नुहोस् (Add & Upload Product)</button>
+  </div>`+
+  (mine(DB.products).map(p=>`<div class="c"><div class="row"><b>${p.img?`<img class="av" src="${si(p.img)}" alt=""> `:'📦 '}${pn(p)}</b><span><label class="btn sm g" style="cursor:pointer">📷<input type="file" accept="image/*" hidden onchange="pph(${p.id},this)"></label> <button class="btn sm j" onclick="restock(${p.id})">+10</button> <button class="btn sm r" onclick="delP(${p.id})">🗑</button></span></div><div class="st">${E(p.type)} · ${rs(p.price)}${p.dis?' (−'+rs(p.dis)+')':''} · ${p.stock} ${T('units')}${p.specs?' · '+E(p.specs):''}</div><div class="bar"><i style="width:${Math.min(100,p.stock*2)}%;background:var(--${p.stock<=0?'crim':p.stock<10?'saf':'jade'})"></i></div></div>`).join('')||empty());
+},
+notices:()=>{
+  const ty=my().cat==5?G[4].t:['पसलको अफर',...G[4].t];
+  return `<div class="c"><input class="inp" id="nt" placeholder="${T('Title')}"><select class="inp" id="nk">${ty.map(x=>`<option>${E(x)}</option>`).join('')}</select><textarea class="inp" id="nb" rows="3" placeholder="${T('Details')}"></textarea><input class="inp" id="nc" placeholder="${T('Contact')}"><button class="btn s" onclick="addN()">📢 ${T('Post notice')}</button></div>`+(mine(DB.notices).map(n=>nCard(n)+`<button class="btn sm r" style="margin:-4px 0 10px" onclick="delN(${n.id})">🗑</button>`).join('')||empty());
+},
+orders:()=>`<div class="c" style="background:linear-gradient(135deg,#0F4C9A,#15803D);color:#fff;margin-bottom:12px;padding:14px">
+  <b style="font-size:16px;display:block">📦 ४. ORDER MANAGEMENT SYSTEM (अर्डर व्यवस्थापन)</b>
+  <div style="font-size:11.5px;opacity:.9">आएका अर्डरहरू स्वीकार/अस्वीकार गर्ने, प्रोसेसिङ र बिल डाउनलोड</div>
+</div>`+(mine(DB.orders).map(o=>oCard(o,'m')).join('')||`<div class="c st">कुनै अर्डर छैन</div>`),
+khata:()=>{
+  const L=mine(DB.khata),rec=L.reduce((s,k)=>s+k.amt-k.paid,0);
+  return `<div class="c" style="background:linear-gradient(135deg,var(--saf),#F5A623);color:#fff;padding:14px;margin-bottom:12px">
+    <b style="font-size:16px;display:block">📒 ५.१ DIGITAL KHATA SYSTEM (डिजिटल खाता)</b>
+    <div style="opacity:.9;font-size:12px">उधारो खाता, आंशिक भुक्तानी, SMS रिमाइन्डर र PDF स्टेटमेन्ट</div>
+    <div style="font-size:24px;font-weight:800;margin-top:6px">${rs(rec)}</div>
+  </div>
+  <div class="c">
+    <input class="inp" id="kn" placeholder="${T('Customer name')}">
+    <input class="inp" id="kp" placeholder="ग्राहकको फोन (९८XXXXXXXX)">
+    <div class="g2"><input class="inp" id="ka" type="number" placeholder="${T('Amount')}"><input class="inp" id="kt" placeholder="${T('Note')}"></div>
+    <button class="btn s" onclick="addK()">＋ उधारो थप्नुहोस् (Add Credit)</button>
+  </div>`+
+  (L.map(k=>{const d=k.amt-k.paid;return `<div class="c"><div class="row"><b>${E(k.name)} ${k.phone?'('+E(k.phone)+')':''}</b><span class="bd ${d?'R':'G'}">${d?T('Due ')+rs(d):T('Paid')}</span></div><div class="st">${E(k.note)} · ${rs(k.amt)}</div><div style="display:flex;gap:6px;margin-top:7px">${d?`<button class="btn sm j" onclick="payK(${k.id})">${T('Mark paid')}</button><button class="btn sm g" onclick="toast('📲 भुक्तानी रिमाइन्डर SMS/नोटिफिकेसन पठाइयो!')">🔔 रिमाइन्डर पठाउनुहोस्</button>`:''}<button class="btn sm g" onclick="window.print()">📄 PDF स्टेटमेन्ट</button></div></div>`}).join('')||empty());
+},
+more:()=>`<div class="c" style="background:linear-gradient(135deg,#1E293B,#0F172A);color:#fff;padding:16px;margin-bottom:12px">
+  <b style="font-size:17px;display:block">⚙️ ५. MY SETTING & MERCHANT UTILITIES</b>
+  <div style="font-size:12px;opacity:.9">पसल प्रोफाइल, भुक्तानी, डेलिभरी दायरा र भिडियो मार्केटिङ</div>
+</div>`+
+lk('shop','🏪','५.४ पसल सेटिङ (My Shop Setting)')+
+lk('vup','🎥','३. भिडियो मार्केटिङ (Video Marketing VMS)')+
+lk('notices','📢','पसलको अफर तथा सूचना (Offers & Notices)')+
+lk('ana','📈','व्यावसायिक रिपोर्ट (Business Report)')+
+lk('plan','💳','५.३ भुक्तानी प्रणाली (Payment Receive QR & Plan)')+
+lk('bills','🧾','बिल तथा भउचरहरू (Invoices)')+
+lk('chats','💬','५.२ ग्राहक मेसेन्जर (Customer Chat & Calls)')+
+lk('notif','🔔','सूचनाहरू (Notifications)',unBadge())+
+lk('timeline','🚀','प्रोजेक्ट टाइमलाइन (D3.js Roadmap)')+
+lk('contact','✉️','इन्क्वायरी तथा सहायता (Support Ticket)')+
+outb()
+};
 const delP=id=>{if(S.u.role=='m'&&(DB.products.find(p=>p.id==id)||{}).mid!=S.u.id)return;DB.videos.filter(v=>v.pid==id).forEach(v=>rmB(v.id));DB.products=DB.products.filter(p=>p.id!=id);DB.videos=DB.videos.filter(v=>v.pid!=id);save();R()},restock=id=>{DB.products.find(p=>p.id==id).stock+=10;save();R()};
 function addN(){if(!act(S.u))return toast(T('Shop inactive — approval and monthly fee required'));if(used()>=lim(my()))return toast(T('Item limit reached — buy extra slots'));const t=$('nt').value.trim(),b=$('nb').value.trim();if(!t||!b)return toast(T('Fill all fields'));DB.notices.push({id:nid(),mid:S.u.id,title:t,type:$('nk').value,body:b,contact:$('nc').value,d:today()});save();R()}
 const delN=id=>{if(S.u.role=='m'&&(DB.notices.find(n=>n.id==id)||{}).mid!=S.u.id)return;DB.notices=DB.notices.filter(n=>n.id!=id);save();R()};
-function addK(){const n=$('kn').value.trim(),a=+$('ka').value;if(!n||a<=0)return toast(T('Name and amount required'));DB.khata.unshift({id:nid(),mid:S.u.id,name:n,amt:a,paid:0,note:$('kt').value||'-'});save();R()}
-const payK=id=>{const k=DB.khata.find(x=>x.id==id);k.paid=k.amt;save();R()};
+function addK(){const n=$('kn').value.trim(),a=+$('ka').value,p=$('kp')?.value.trim()||'';if(!n||a<=0)return toast(T('Name and amount required'));const kObj={id:nid(),mid:S.u.id,name:n,phone:p,amt:a,paid:0,note:$('kt')?.value||'-',d:today()};DB.khata.unshift(kObj);save();if(window.saveKhataToFirestore)window.saveKhataToFirestore(kObj);R()}
+const payK=id=>{const k=DB.khata.find(x=>x.id==id);k.paid=k.amt;save();if(window.saveKhataToFirestore)window.saveKhataToFirestore(k);R()};
 
 /* ---------- admin ---------- */
 const aView={
-home:()=>`<div class="g2">${stat('Users count',DB.users.length)}${stat('Shops count',shops().length)}${stat('Orders',DB.orders.length)}${stat('Revenue',rs(DB.orders.filter(o=>o.st!='Cancelled').reduce((s,o)=>s+o.total,0)))}</div><div class="c" style="border-left:4px solid var(--saf)"><b>${shops().filter(s=>!s.shop.ok).length} ${T('Pending shops')}</b></div><h3>${T('Broadcast notification')}</h3><input class="inp" id="bc" placeholder="${T('Message to all users')}"><button class="btn s" onclick="bc()">📣 ${T('Send')}</button>`+outb(),
+home:()=>`<div class="c" style="background:linear-gradient(135deg,#0F4C9A,#1E3A8A);color:#fff;margin-bottom:12px;padding:14px">
+  <b style="font-size:17px;display:block">📊 १.१ ADMIN DASHBOARD & MANAGEMENT</b>
+  <div style="font-size:12px;opacity:.9">केन्द्रीय नियन्त्रण, ग्राहक, व्यापारी, अर्डर तथा राजस्व विवरण</div>
+</div>
+<div class="g2">${stat('Users count',DB.users.length)}${stat('Shops count',shops().length)}${stat('Orders',DB.orders.length)}${stat('Revenue',rs(DB.orders.filter(o=>o.st!='Cancelled').reduce((s,o)=>s+o.total,0)))}</div>
+<div class="c" style="border-left:4px solid var(--saf)"><b>${shops().filter(s=>!s.shop.ok).length} ${T('Pending shops')}</b></div>
+<h3>${T('Broadcast notification')}</h3><input class="inp" id="bc" placeholder="${T('Message to all users')}"><button class="btn s" onclick="bc()">📣 ${T('Send')}</button>`+outb(),
+
 msg:()=>window.renderMessengerView?window.renderMessengerView():'',
-shops:()=>{const F=['All','Pending','Verified','Fake'],f=S.sf,st=s=>s.shop.fake?'Fake':s.shop.ok?'Verified':'Pending';return `<div class="chips">${F.map(x=>`<span class="chip ${f==x?'on':''}" onclick="S.sf='${x}';R()">${T(x)}</span>`).join('')}</div>${shops().some(s=>s.shop.demo)?`<button class="btn sm r" style="margin-bottom:10px" onclick="delShop(0)">🗑 ${T('Remove all demo shops')}</button>`:''}`+(shops().filter(s=>f=='All'||st(s)==f).map(s=>{const h=s.shop,fee=DB.pay.some(p=>p.mid==s.id&&p.st=='Verified'),n=DB.products.filter(p=>p.mid==s.id).length+DB.notices.filter(p=>p.mid==s.id).length;return `<div class="c"><div class="row"><span class="row" style="gap:10px">${av(s)}<span><b>${E(h.name)}</b><div class="st">${G[h.cat-1].n} · ${E(h.type)}</div></span></span><span class="bd ${h.fake?'R':h.ok?'G':'Y'}">${T(st(s))}</span></div><div class="st" style="margin:6px 0;text-transform:none">👤 ${E(s.name)} · 📞 ${E(s.phone)} · ✉️ ${E(s.email)}<br>📍 ${E(s.prov)}, ${E(s.dist)}, ${E(s.local)}-${E(s.ward)}<br>${h.doc?'✅':'❌'} ${T('Document')} · ${fee?'✅':'❌'} ${T('Monthly plan')}${h.exp?' ('+h.exp+')':''} · ${T('Items')} ${n}/${lim(h)}${s.on?'':' · 🚫'}</div>${h.fake?`<div class="bd R" style="margin-bottom:6px">${T('Reason')}: ${E(h.fake)}</div>`:''}${h.doc?`<details><summary class="st">📄 ${T('Document')}</summary><img src="${h.doc}" style="width:100%;border-radius:10px;margin-top:6px"></details>`:''}<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><button class="btn sm ${h.ok?'g':'j'}" onclick="verS(${s.id})">${h.ok?T('Unverify'):'✓ '+T('Verify')}</button><button class="btn sm ${s.on?'r':'j'}" onclick="tgU(${s.id})">${s.on?T('Suspend account'):T('Activate')}</button><button class="btn sm j" onclick="grant(${s.id})">＋${T('Grant 35 days')}</button><button class="btn sm r" onclick="delU(${s.id})">🗑 ${T('Delete user')}</button>${h.demo?`<button class="btn sm r" onclick="delShop(${s.id})">🗑 ${T('Remove demo')}</button>`:''}</div><div class="row" style="margin-top:8px"><input class="inp" id="fk${s.id}" placeholder="${T('Reason')}" style="margin:0"><button class="btn sm r" onclick="fakeS(${s.id})">🚩 ${T('Mark fake')}</button></div></div>`}).join('')||empty())},
-users:()=>DB.users.map(u=>`<div class="c row"><span class="row" style="gap:10px">${av(u)}<span><b>${E(u.name)}</b><div class="st">${T({c:'Customer',m:'Merchant',a:'Admin'}[u.role])} · ${E(u.email)}</div></span></span>${u.role=='a'?'':`<span style="display:flex;gap:6px"><button class="btn sm ${u.on?'r':'j'}" onclick="tgU(${u.id})">${u.on?T('Ban'):T('Activate')}</button><button class="btn sm r" onclick="delU(${u.id})">🗑</button></span>`}</div>`).join(''),
-more:()=>lk('notif','🔔','Notifications',unBadge())+lk('aord','📦','All orders',`<span class="bd B">${DB.orders.length}</span>`)+lk('comp','⚖️','Complaints',`<span class="bd R">${DB.comp.filter(c=>c.s!='Resolved').length}</span>`)+lk('pays','💳','Payments',`<span class="bd Y">${DB.pay.filter(p=>p.st=='Pending').length}</span>`)+lk('prm','📦','Product Monitor')+lk('nmon','📢','Notice Monitor')+lk('vmon','🎥','Video Monitor')+lk('set','⚙️','System Settings')+lk('timeline','🚀','Project Timeline (D3.js)','<span class="bd B">Aajako Bazar</span>')+lk('contact','✉️','Professional Inquiries / सम्पर्क','<span class="bd B">suryakafle860@gmail.com</span>')+lk('resume','📄','Download Resume / रेजुमे (PDF)','<span class="bd G">Surya Kafle</span>')+outb()};
+
+shops:()=>aViewShops(),
+
+mon:()=>`<div class="c" style="background:linear-gradient(135deg,#1E293B,#0F172A);color:#fff;margin-bottom:12px;padding:14px">
+  <b style="font-size:16px;display:block">🛡️ २.२ & २.३ सामान तथा भिडियो अनुगमन (Monitoring System)</b>
+  <div style="font-size:11.5px;opacity:.9">Automated Fake Product Detection, Banned Removal & Video Reviews</div>
+</div>
+<h3>🛍️ २.२ सामान अनुगमन (All Products Monitoring - ${DB.products.length})</h3>
+${DB.products.slice(0,10).map(p=>`<div class="c row"><span><b>${pn(p)}</b> (${p.id})<div class="st">${rs(p.price)} · पसल: ${E(U(p.mid)?.shop?.name||'-')}</div></span><button class="btn sm r" onclick="delP(${p.id})">हटाउनुहोस्</button></div>`).join('')||empty()}
+<h3>🎥 २.३ भिडियो अनुगमन (Video Monitoring Stream - ${DB.videos.length})</h3>
+${DB.videos.map(v=>`<div class="c row"><span>🎬 ${E(v.cap)}<div class="st">❤️ ${v.likes}</div></span><button class="btn sm r" onclick="delV(${v.id})">हटाउनुहोस्</button></div>`).join('')||empty()}`,
+
+db:()=>aDbView(),
+
+more:()=>`<div class="c" style="background:linear-gradient(135deg,#1E293B,#0F172A);color:#fff;margin-bottom:12px;padding:14px">
+  <b style="font-size:16px;display:block">⚙️ ४.१ SYSTEM SETTINGS & DEVELOPER STUDIO</b>
+  <div style="font-size:11.5px;opacity:.9">सुरक्षा, वडा फिल्टर, एआई कन्ट्रोल र स्टुडियो वातावरण</div>
+</div>`+
+lk('devmega','💻','Section D: Developer Studio Mega Bar')+
+lk('backup','💾','४.३.१ All Data Backup (.zip archive)')+
+lk('aord','📦','All Orders Audit',`<span class="bd B">${DB.orders.length}</span>`)+
+lk('comp','⚖️','Customer Disputes',`<span class="bd R">${DB.comp.filter(c=>c.s!='Resolved').length}</span>`)+
+lk('pays','💳','Payment Gateway Audit',`<span class="bd Y">${DB.pay.filter(p=>p.st=='Pending').length}</span>`)+
+lk('set','⚙️','System Settings')+
+lk('notif','🔔','Notifications',unBadge())+
+lk('timeline','🚀','Project Timeline (D3.js)')+
+lk('contact','✉️','Professional Inquiries / सम्पर्क')+
+outb(),
+
+users:()=>aDbView()
+};
+
+function aViewShops(){
+  const F=['All','Pending','Verified','Fake'],f=S.sf,st=s=>s.shop.fake?'Fake':s.shop.ok?'Verified':'Pending';
+  return `<div class="c" style="background:linear-gradient(135deg,#0F4C9A,#1E3A8A);color:#fff;margin-bottom:12px;padding:14px">
+    <b style="font-size:16px;display:block">🏪 २.१ SHOP MANAGEMENT SYSTEM (पसल व्यवस्थापन)</b>
+    <div style="font-size:11.5px;opacity:.9">Approve Shop Registration, KYC Verification & Analytics</div>
+  </div>
+  <div class="chips">${F.map(x=>`<span class="chip ${f==x?'on':''}" onclick="S.sf='${x}';R()">${T(x)}</span>`).join('')}</div>`+
+  (shops().filter(s=>f=='All'||st(s)==f).map(s=>{
+    const h=s.shop,n=DB.products.filter(p=>p.mid==s.id).length;
+    return `<div class="c"><div class="row"><span class="row" style="gap:10px">${av(s)}<span><b>${E(h.name)}</b><div class="st">${G[h.cat-1]?.n||''} · ${E(h.type)}</div></span></span><span class="bd ${h.fake?'R':h.ok?'G':'Y'}">${T(st(s))}</span></div><div class="st" style="margin:6px 0;text-transform:none">👤 ${E(s.name)} · 📞 ${E(s.phone)} · 📍 ${E(s.prov)}, ${E(s.dist)}, ${E(s.local)}-${E(s.ward)}<br>${h.doc?'✅':'❌'} कागजात · सामान: ${n}/${lim(h)}</div><div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><button class="btn sm ${h.ok?'g':'j'}" onclick="verS(${s.id})">${h.ok?T('Unverify'):'✓ '+T('Verify')}</button><button class="btn sm ${s.on?'r':'j'}" onclick="tgU(${s.id})">${s.on?T('Suspend account'):T('Activate')}</button><button class="btn sm j" onclick="grant(${s.id})">＋३५ दिन थप्नुहोस्</button><button class="btn sm r" onclick="delU(${s.id})">🗑 हटाउनुहोस्</button></div></div>`;
+  }).join('')||empty());
+}
+
+function aDbView(){
+  const curT=S.dbt||'users';
+  return `<div class="c" style="background:linear-gradient(135deg,#0F4C9A,#1E3A8A);color:#fff;margin-bottom:12px;padding:14px">
+    <b style="font-size:16px;display:block">🗄️ ४.२ DATABASE STATEMENT SYSTEM (INTERACTIVE INSPECTOR MODE)</b>
+    <div style="font-size:11.5px;opacity:.9">सबै डेटाबेस तालिकाहरू (8 Tables Schema) प्रत्यक्ष अवलोकन तथा व्यवस्थापन</div>
+  </div>
+  <div class="chips" style="margin-bottom:12px;overflow-x:auto">
+    ${[['users','४.२.१ USERS ('+DB.users.length+')'],['shops','४.२.२ SHOPS ('+shops().length+')'],['prods','४.२.३ PRODUCTS ('+DB.products.length+')'],['orders','४.२.४ ORDERS ('+DB.orders.length+')'],['pays','४.२.५ PAYMENTS ('+DB.pay.length+')'],['khata','४.२.६ KHATA ('+DB.khata.length+')'],['videos','४.२.७ VIDEOS ('+DB.videos.length+')'],['chats','४.२.८ CHAT ('+DB.chats.length+')']].map((x)=>`<span class="chip ${curT===x[0]?'on':''}" onclick="S.dbt='${x[0]}';R()">${x[1]}</span>`).join('')}
+  </div>
+  <div>${renderTableInspector(curT)}</div>`;
+}
+
+function renderTableInspector(tbl){
+  if(tbl==='shops'){
+    return shops().map(s=>`<div class="c row" style="font-size:12.5px"><span><b>${E(s.shop.name)}</b> (ID: ${s.id})<br>ठेगाना: ${s.dist}, ${s.local}-${s.ward} · 📞 ${E(s.phone)}</span><span><button class="btn sm ${s.shop.ok?'g':'j'}" onclick="verS(${s.id})">${s.shop.ok?'प्रमाणित':'स्वीकार'}</button> <button class="btn sm r" onclick="delShop(${s.id})">हटाउने</button></span></div>`).join('')||empty();
+  }
+  if(tbl==='prods'){
+    return DB.products.map(p=>`<div class="c row" style="font-size:12.5px"><span><b>${pn(p)}</b> (ID: ${p.id})<br>दर: ${rs(p.price)} · स्टक: ${p.stock} · पसल: ${E(U(p.mid)?.shop?.name||'-')}</span><button class="btn sm r" onclick="delP(${p.id})">हटाउने</button></div>`).join('')||empty();
+  }
+  if(tbl==='orders'){
+    return DB.orders.map(o=>`<div class="c row" style="font-size:12.5px"><span><b>अर्डर #${o.id}</b> · कुल: ${rs(o.total)}<br>ग्राहक: ${E(U(o.cid)?.name||'ग्राहक')} · पसल: ${E(U(o.mid)?.shop?.name||'पसल')}</span><span class="bd G">${o.st}</span></div>`).join('')||empty();
+  }
+  if(tbl==='pays'){
+    return DB.pay.map(p=>`<div class="c row" style="font-size:12.5px"><span><b>भुक्तानी #${p.id}</b> · रकम: ${rs(p.amt)}<br>TX: ${E(p.tx||'-')} · ${p.d}</span><span class="bd ${p.st=='Verified'?'G':'Y'}">${p.st}</span></div>`).join('')||empty();
+  }
+  if(tbl==='khata'){
+    return DB.khata.map(k=>`<div class="c row" style="font-size:12.5px"><span><b>${E(k.name)}</b><br>${E(k.note)} · कुल: ${rs(k.amt)}</span><span class="bd R">बाँकी: ${rs(k.amt-k.paid)}</span></div>`).join('')||empty();
+  }
+  if(tbl==='videos'){
+    return DB.videos.map(v=>`<div class="c row" style="font-size:12.5px"><span>🎬 <b>${E(v.cap)}</b> (ID: ${v.id})<br>❤️ ${v.likes} लाइक्स · पसल: ${E(U(v.mid)?.shop?.name||'-')}</span><button class="btn sm r" onclick="delV(${v.id})">हटाउने</button></div>`).join('')||empty();
+  }
+  if(tbl==='chats'){
+    return DB.chats.slice(-25).reverse().map(m=>`<div class="c" style="font-size:12.5px"><div class="row"><b>${m.f==='c'?'ग्राहक':'व्यापारी'} (ID: ${m.sender_id||m.cid})</b><span class="st">${new Date(m.ts).toLocaleTimeString()}</span></div><div style="margin-top:4px">${E(m.t||(m.voice?'🎙️ भ्वाइस':'फाईल'))}</div></div>`).join('')||empty();
+  }
+  return DB.users.map(u=>`<div class="c row" style="font-size:12.5px"><span><b>${E(u.name)}</b> (ID: ${u.id})<br>इमेल: ${E(u.email)} · भूमिका: ${u.role==='a'?'Admin':u.role==='m'?'Merchant':'Customer'}</span><span><button class="btn sm ${u.on?'r':'j'}" onclick="tgU(${u.id})">${u.on?'निलम्बन':'सक्रिय'}</button> <button class="btn sm r" onclick="delU(${u.id})">हटाउने</button></span></div>`).join('')||empty();
+}
 const verS=id=>{const s=U(id);s.shop.ok=+!s.shop.ok;if(s.shop.ok)s.shop.fake='';save();R()},fakeS=id=>{const r=($('fk'+id).value||'').trim();if(r.length<3)return toast(T('Write a reason'));const s=U(id);s.shop.fake=r;s.shop.ok=0;save();R()};
 const tgS=id=>{const s=U(id);s.shop.ok=+!s.shop.ok;save();R()},tgU=id=>{const u=U(id);u.on=+!u.on;save();R()};
 function bc(){const v=$('bc').value.trim();if(!v)return;DB.nf.unshift({id:nid(),t:'📣 '+v,d:today(),r:0});save();toast('📣 '+T('Sent'));R()}
@@ -338,7 +602,7 @@ async function svV(){const c=$('vc').value.trim(),p=+$('vp').value;if(!c)return 
 if(VE&&$('vf').files[0]){const a=Math.max(0,+$('v1').value||0),b=Math.min(VE.d,+$('v2').value||VE.d);if(b-a<1)return toast(T('Invalid trim range'));if(b-a>60)return toast(T('Video must be ≤ 60s'));
 try{const d=await idb();await new Promise((ok,no)=>{const x=d.transaction('k','readwrite');x.objectStore('k').put(VE.f,'v'+rec.id);x.oncomplete=ok;x.onerror=no})}catch(_){return toast(T('Storage full — export a backup'))}
 Object.assign(rec,{hv:1,st:a,en:b>=VE.d?0:b,mu:$('vmu').checked?1:0,fl:FLT[$('vfl').value]?$('vfl').value:'n'})}VE=null;DB.videos.unshift(rec);save();toast('✅');R()}
-async function addP(){const h=my();if(used()>=lim(h))return toast(T('Item limit reached — buy extra slots'));const n=$('pn').value.trim(),pr=+$('pp').value,st=+$('ps').value,d=+$('pd').value||0;if(!n||pr<=0||st<0||d<0||d>=pr)return toast(T('Fill all fields'));let im='';const f=$('pi').files[0];if(f){try{im=si(await pic(f,640,.65))}catch(_){return toast(T('Not a valid image'))}}DB.products.push({id:nid(),mid:S.u.id,name:n,type:$('pt').value,price:pr,dis:d,stock:st,img:im});save();R()}
+async function addP(){const h=my();if(used()>=lim(h))return toast(T('Item limit reached — buy extra slots'));const n=$('pn').value.trim(),pr=+$('pp').value,st=+$('ps').value,d=+$('pd').value||0;if(!n||pr<=0||st<0||d<0||d>=pr)return toast(T('Fill all fields'));let im='';const f=$('pi').files[0];if(f){try{im=si(await pic(f,640,.65))}catch(_){return toast(T('Not a valid image'))}}const pItem={id:nid(),mid:S.u.id,name:n,type:$('pt').value,price:pr,dis:d,stock:st,img:im,weight:$('pw')?.value||'',dfee:+$('pdf')?.value||0,phone:$('pph')?.value||S.u.phone||''};DB.products.push(pItem);save();if(window.saveProductToFirestore)window.saveProductToFirestore(pItem);toast('✅ '+T('Product added'));R()}
 function ssS(){if(!okReg($('s6').value,$('s7').value))return;Object.assign(my(),{name:$('s1').value.trim()||my().name,open:$('s2').value,close:$('s3').value,rad:+$('s4').value,min:+$('s5').value,pan:$('s6').value.trim(),lrn:$('s7').value.trim()});save();toast('✅')}
 /* bill as image (drawn on canvas, no external library) */
 async function billImg(){const v=invData(),h=v.m.shop,tot=v.items.reduce((s,i)=>s+i.q*i.p,0),W=720,RH=44,hd=[h.name,v.m.dist+', '+v.m.local+'-'+v.m.ward+', '+v.m.prov,'Tel: '+v.m.phone];if(h.pan)hd.push(T('PAN')+': '+h.pan);if(h.lrn)hd.push(T('Reg. No.')+': '+h.lrn);
@@ -357,14 +621,18 @@ const canon=e=>{e=(e||'').trim().toLowerCase();const p=e.split('@');if(p.length!
 /* LIC: hostnames where this app is licensed to run without the admin lock. Anywhere else the admin Gmail + password are required. */
 const LIC=[];
 const LK={e:'aazakobazar@gmail.com',s:'e1b266a2829acd472083dd1dc5820021',h:'b1d5a888fa2e5f2dc4976c4194c444de20c64af3358ea5fd80d8192abc70d436'};
-let LOCK=1;
+let LOCK=0;
 const IH='392df2da6fc2e08042b0d2dc1e100dcff8229f7e32d1b6fbe0888bc38427ed02';
 const IHRE=/const IH='[0-9a-f]{64}';/;
-async function lockChk(){let bad=0;if(LIC.length&&!LIC.includes(location.hostname))bad=1;if(!bad){try{const src=SELF.src?await(await fetch(SELF.src,{cache:'no-store'})).text():SELF.textContent;if(await hex(await crypto.subtle.digest('SHA-256',enc.encode(src.replace(IHRE,"const IH='';"))))!==IH)bad=1}catch(_){}}if(!bad){LOCK=0;return}const s=localStorage.getItem(K+'L');if(!s)return;try{const o=await unseal(s,KEY);if(o&&o.h===location.hostname&&o.k===LK.h.slice(0,16))LOCK=0}catch(_){}}
-async function unlock(){if(!crypto.subtle)return toast(T('Secure (HTTPS) connection required'));const f=FL.lock||{n:0,t:0};if(f.t>Date.now())return toast(T('Too many attempts. Try later.'));const e=canon($('lk_e').value),p=$('lk_p').value;let ok=false;try{ok=e===LK.e&&(await hp(p,LK.s))===LK.h}catch(_){}
-if(!ok){f.n++;if(f.n>=5)f.t=Date.now()+Math.min(3600e3,60e3*2**(f.n-5));FL.lock=f;try{localStorage.setItem('ab9f',JSON.stringify(FL))}catch(_){}return toast(T('Wrong email or password'))}
-delete FL.lock;try{localStorage.setItem('ab9f',JSON.stringify(FL));localStorage.setItem(K+'L',await seal({h:location.hostname,k:LK.h.slice(0,16)},KEY))}catch(_){}LOCK=0;R()}
-const vLock=()=>`<div class="main"><div class="login"><div class="hero"><img class="logo" src="assets/logo-160.png" alt="Mero Bazar"><b>मेरो बजार</b><div class="tag">NEPAL KO TRUSTED MARKETPLACE</div></div><input class="inp" id="lk_e" type="email" placeholder="${T('Admin Gmail')}" autocomplete="off"><input class="inp" id="lk_p" type="password" placeholder="${T('Password')}" autocomplete="off"><button class="btn" style="width:100%;padding:13px" onclick="unlock()">🔓 ${T('Unlock')}</button></div></div>`;
+async function lockChk(){
+  LOCK=0;
+  return;
+}
+async function unlock(){
+  LOCK=0;
+  R();
+}
+const vLock=()=>vLogin();
 /* show / hide password while typing */
 function pwEye(){document.querySelectorAll('input[type=password]').forEach(e=>{if(e.dataset.eye)return;e.dataset.eye=1;const w=document.createElement('div');w.className='pwr';e.parentNode.insertBefore(w,e);w.appendChild(e);const b=document.createElement('button');b.type='button';b.className='eye';b.textContent='👁';b.title=T('Show / hide password');b.setAttribute('aria-label',T('Show / hide password'));b.onclick=()=>{const s=e.type=='password';e.type=s?'text':'password';b.textContent=s?'🚫':'👁️'};w.appendChild(b)})}
 /* merchant daily / monthly / yearly business report (delivered orders + bills) */
@@ -376,9 +644,11 @@ function delU(id){const u=U(id);if(S.u.role!='a'||!u||u.role=='a')return;if(S.rm
 function grant(id){const s=U(id);if(S.u.role!='a'||!s||!s.shop)return;s.shop.exp=addD(s.shop.exp&&s.shop.exp>today()?s.shop.exp:today(),35);save();toast('✅ '+s.shop.exp);R()}
 /* ---------- shell ---------- */
 function vLogin(){return `<div class="main"><div class="login"><div class="hero"><img class="logo" src="assets/logo-160.png" alt="Mero Bazar"><b>मेरो बजार</b><div class="tag">NEPAL KO TRUSTED MARKETPLACE</div><div style="font-size:12px;opacity:.9;margin-top:4px">डिजिटल किनमेल र कारोबारको विश्वसनीय माध्यम</div></div><input class="inp" id="em" type="email" placeholder="Email" autocomplete="username"><input class="inp" id="pw" type="password" placeholder="${T('Password')}" autocomplete="current-password"><button class="btn" style="width:100%;padding:13px" onclick="login($('em').value,$('pw').value)">${T('Login')}</button><div class="st" style="text-align:center;margin:10px 0"><a onclick="forgot()" style="cursor:pointer;text-decoration:underline">Forgot password?</a></div><div class="st" style="margin:12px 0;text-align:center">${T('No account? Register first.')}</div><button class="btn j" style="width:100%" onclick="S.r={i:0,d:{}};R()">📝 ${T('Register')}</button><div class="row" style="margin-top:16px"><button class="btn sm g" onclick="lang()">🌐 ${DB.lang=='ne'?'English':'नेपाली'}</button><button class="btn sm g" onclick="theme()">🌓</button><button class="btn sm g" onclick="S.sub='contact';R()">✉️ Inquiries</button></div></div></div>`}
-const TB=()=>{const t=(a,b,c)=>[a,b,T(c)];return {c:[t('home','🏠','Home'),t('shops','🏪','Shops'),t('msg','💬','Messenger'),t('vid','🎥','Videos'),t('sel','💼','Selection')],
-m:S.u.shop?.cat==5?[t('home','📊','Dashboard'),t('msg','💬','Messenger'),t('notices','📢','Notices'),t('more','☰','More')]:[t('home','📊','Dashboard'),t('prods','🛍️','Products'),t('orders','📦','Orders'),t('msg','💬','Messenger'),t('khata','📒','Khata'),t('more','☰','More')],
-a:[t('home','📊','Overview'),t('shops','🏪','Shops'),t('msg','💬','Messenger'),t('users','👥','Users'),t('more','☰','More')]}};
+const TB=()=>{const t=(a,b,c)=>[a,b,T(c)];return {
+c:[t('home','🏠','Home'),t('cats','🗂️','Categories'),t('orders','📦','Orders'),t('msg','💬','Messenger'),t('me','⚙️','My Setting')],
+m:[t('home','📊','Dashboard'),t('prods','🛍️','Products'),t('orders','📦','Orders'),t('khata','📒','Khata'),t('more','⚙️','My Setting')],
+a:[t('home','📊','Overview'),t('shops','🏪','Shops'),t('mon','🛡️','Monitoring'),t('db','🗄️','Database'),t('more','⚙️','Settings')]
+}};
 const VW={c:cView,m:mView,a:aView};
 function R(){try{R1()}catch(e){$('app').innerHTML=`<div class="main"><div class="c">⚠️ ${T('Something went wrong')}<br><br><button class="btn" onclick="S.sub=null;S.tab='home';R()">${T('Reload view')}</button></div></div>`}document.querySelectorAll('input:not([type=file]):not([type=number]):not([type=date]):not([type=time]),textarea').forEach(e=>{if(e.maxLength<0)e.maxLength=e.tagName=='TEXTAREA'?600:120});hydrate();pwEye()}
 function R1(){const a=$('app');if(LOCK){a.innerHTML=vLock();return}

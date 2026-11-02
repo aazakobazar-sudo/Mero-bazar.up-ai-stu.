@@ -393,13 +393,19 @@
         time: Date.now()
       });
     } else {
-      DB.chats.push({
+      const newChat = {
         cid: u.role === 'c' ? u.id : MS.activeTargetId,
         mid: u.role === 'm' ? u.id : MS.activeTargetId,
         f: u.role === 'c' ? 'c' : 'm',
+        receiver_id: MS.activeTargetId,
+        sender_id: u.id,
         t: val,
         ts: Date.now()
-      });
+      };
+      DB.chats.push(newChat);
+      if (window.sendChatMessageToFirestore) {
+        window.sendChatMessageToFirestore(newChat);
+      }
     }
 
     input.value = '';
@@ -615,12 +621,18 @@
         time: Date.now()
       });
     } else {
-      DB.chats.push({
+      const newVoice = {
         ...voiceMsg,
         cid: u.role === 'c' ? u.id : MS.activeTargetId,
         mid: u.role === 'm' ? u.id : MS.activeTargetId,
-        f: u.role === 'c' ? 'c' : 'm'
-      });
+        f: u.role === 'c' ? 'c' : 'm',
+        receiver_id: MS.activeTargetId,
+        sender_id: u.id
+      };
+      DB.chats.push(newVoice);
+      if (window.sendChatMessageToFirestore) {
+        window.sendChatMessageToFirestore(newVoice);
+      }
     }
 
     MS.recording = false;
@@ -1051,6 +1063,23 @@
     // Play authentic outgoing "टुर... टुर..." dial ringtone
     SoundEngine.startOutgoingRingtone();
 
+    // Push real-time call request to Firestore 'calls' collection for instant multi-device ringing
+    if (window.fs && caller && tid) {
+      try {
+        const callDocId = 'call_' + caller.id + '_' + tid + '_' + Date.now();
+        window.currentCallDocId = callDocId;
+        window.fs.collection('calls').doc(callDocId).set({
+          call_id: callDocId,
+          caller_id: caller.id,
+          caller_name: caller.shop ? caller.shop.name : caller.name,
+          callee_id: tid,
+          type: type,
+          status: 'ringing',
+          ts: Date.now()
+        });
+      } catch (e) { console.warn('Firestore call signal error:', e); }
+    }
+
     // Initialize Metered.ca WebRTC Peer Connection
     try {
       if (window.RTCPeerConnection) {
@@ -1122,6 +1151,10 @@
 
     MS.call.status = 'connected';
     MS.call.iceState = 'connected';
+
+    if (window.fs && window.currentCallDocId) {
+      try { window.fs.collection('calls').doc(window.currentCallDocId).update({ status: 'connected' }); } catch (_) {}
+    }
 
     // The call talking timer STARTS ONLY NOW!
     MS.call.startTime = Date.now();
@@ -1346,6 +1379,11 @@
       try { MS.call.peerConnection.close(); } catch(_) {}
     }
 
+    if (window.fs && window.currentCallDocId) {
+      try { window.fs.collection('calls').doc(window.currentCallDocId).update({ status: 'ended' }); } catch (_) {}
+      window.currentCallDocId = null;
+    }
+
     const durationSec = MS.call.startTime ? Math.floor((Date.now() - MS.call.startTime) / 1000) : 0;
     const durStr = durationSec > 0 ? `${Math.floor(durationSec / 60)}m ${durationSec % 60}s` : (ne ? 'मिस कल' : 'Missed');
 
@@ -1386,7 +1424,10 @@
   window.triggerIncomingCall = function(type, callerName) {
     const ne = isNe();
     const existing = document.getElementById('incoming_call_card');
-    if (existing) existing.remove();
+    if (existing) {
+      if (existing.dataset.timer) clearTimeout(existing.dataset.timer);
+      existing.remove();
+    }
 
     // Play pleasant smartphone harmonic ringtone
     SoundEngine.startIncomingRingtone();
@@ -1394,28 +1435,41 @@
     const card = document.createElement('div');
     card.id = 'incoming_call_card';
     card.className = 'incoming-call-toast';
-    card.style.cssText = 'position:fixed;top:16px;left:50%;transform:translateX(-50%);width:92%;max-width:440px;background:#0F172A;color:#fff;border:2px solid #1A7A4A;border-radius:18px;padding:14px 16px;box-shadow:0 12px 36px rgba(0,0,0,0.55);z-index:999999;animation:slideDown 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);';
+    card.style.cssText = 'position:fixed;top:16px;left:50%;transform:translateX(-50%);width:92%;max-width:440px;background:#0F172A;color:#fff;border:2px solid #10B981;border-radius:18px;padding:14px 16px;box-shadow:0 12px 36px rgba(0,0,0,0.65);z-index:999999;animation:slideDown 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);';
+
+    // 30-second auto-timeout
+    const timer = setTimeout(() => {
+      const el = document.getElementById('incoming_call_card');
+      if (el) {
+        window.declineIncomingCall();
+        toast(ne ? '⚠️ मिस्ड कल: उत्तर नदिएको कारण कल समाप्त' : '⚠️ Missed call (timed out)');
+      }
+    }, 30000);
+    card.dataset.timer = timer;
 
     card.innerHTML = `
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
         <div style="display:flex;align-items:center;gap:12px;min-width:0;flex:1">
-          <div style="width:48px;height:48px;border-radius:50%;background:#1E293B;border:2px solid #1A7A4A;display:flex;align-items:center;justify-content:center;font-size:24px;flex:none;box-shadow:0 0 12px rgba(26,122,74,0.4)">
+          <div style="width:48px;height:48px;border-radius:50%;background:#1E293B;border:2px solid #10B981;display:flex;align-items:center;justify-content:center;font-size:24px;flex:none;box-shadow:0 0 14px rgba(16,185,129,0.4)">
             ${type === 'video' ? '📹' : '📞'}
           </div>
           <div style="overflow:hidden">
-            <b style="font-size:16px;font-weight:800;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(callerName || 'Open Bazar Member')}</b>
-            <div style="font-size:12px;color:#68D391;font-weight:700">
+            <b style="font-size:15.5px;font-weight:800;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(callerName || 'Open Bazar Member')}</b>
+            <div style="font-size:11.5px;color:#34D399;font-weight:700">
               🔔 ${type === 'video' ? (ne ? 'आगमन भिडियो कल बज्दैछ...' : 'Incoming Video Call...') : (ne ? 'आगमन अडियो कल बज्दैछ...' : 'Incoming Audio Call...')}
+            </div>
+            <div style="font-size:10px;color:#94A3B8;margin-top:2px">
+              📡 WebRTC Request · global.relay.metered.ca:443
             </div>
           </div>
         </div>
-        <div style="display:flex;gap:10px;flex:none;align-items:center">
+        <div style="display:flex;gap:8px;flex:none;align-items:center">
           <!-- Decline Button -->
-          <button type="button" class="btn sm r" onclick="window.declineIncomingCall()" title="${ne ? 'काट्नुहोस् (Decline)' : 'Decline'}" style="border-radius:99px;padding:8px 14px;font-weight:750;font-size:12.5px;display:flex;align-items:center;gap:4px">
+          <button type="button" class="btn sm r" onclick="window.declineIncomingCall()" title="${ne ? 'काट्नुहोस् (Decline)' : 'Decline'}" style="border-radius:99px;padding:8px 12px;font-weight:750;font-size:12px;display:flex;align-items:center;gap:4px;background:#EF4444;color:#fff;border:none">
             ✕ ${ne ? 'काट्नुहोस्' : 'Decline'}
           </button>
           <!-- Accept Button -->
-          <button type="button" class="btn sm j" onclick="window.acceptIncomingCall('${type}', '${esc(callerName)}')" title="${ne ? 'उठाउनुहोस् (Accept)' : 'Accept'}" style="border-radius:99px;padding:8px 16px;font-weight:750;font-size:12.5px;background:#1A7A4A;box-shadow:0 0 14px rgba(26,122,74,0.5);display:flex;align-items:center;gap:4px">
+          <button type="button" class="btn sm j" onclick="window.acceptIncomingCall('${type}', '${esc(callerName)}')" title="${ne ? 'उठाउनुहोस् (Accept)' : 'Accept'}" style="border-radius:99px;padding:8px 14px;font-weight:750;font-size:12px;background:#10B981;color:#fff;border:none;box-shadow:0 0 14px rgba(16,185,129,0.5);display:flex;align-items:center;gap:4px">
             ✓ ${ne ? 'उठाउनुहोस्' : 'Accept'}
           </button>
         </div>
@@ -1426,21 +1480,27 @@
   };
 
   window.triggerTestIncomingCall = function(type, callerName) {
-    window.triggerIncomingCall(type || 'audio', callerName || (isNe() ? 'ग्राहक सेवा प्रतिनिधि' : 'Support Desk'));
+    window.triggerIncomingCall(type || 'audio', callerName || (isNe() ? 'कालिमाटी फलफूल तथा थोक मण्डी' : 'Support Desk'));
   };
 
   window.declineIncomingCall = function() {
     SoundEngine.stopAll();
     SoundEngine.playHangupTone();
     const card = document.getElementById('incoming_call_card');
-    if (card) card.remove();
+    if (card) {
+      if (card.dataset.timer) clearTimeout(card.dataset.timer);
+      card.remove();
+    }
     toast(isNe() ? '📞 कल अस्वीकार गरियो' : '📞 Call declined');
   };
 
   window.acceptIncomingCall = function(type, callerName) {
     SoundEngine.stopAll();
     const card = document.getElementById('incoming_call_card');
-    if (card) card.remove();
+    if (card) {
+      if (card.dataset.timer) clearTimeout(card.dataset.timer);
+      card.remove();
+    }
     window.startCall(type, callerName);
     setTimeout(() => {
       if (MS.call && MS.call.status === 'ringing') {
@@ -1450,4 +1510,5 @@
   };
 
 })();
+
 
